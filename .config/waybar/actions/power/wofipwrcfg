@@ -1,0 +1,43 @@
+## Wofi Power Options Configuration
+
+## General
+show=dmenu
+parse_action=true
+normal_window=true
+layer=top
+term=alacritty
+
+## Geometry
+width=300px
+location=top_right # only works with `normal_window=false`
+lines=5
+halign=fill
+# valing=fill
+line_wrap=off
+dynamic_lines=true
+
+## Images
+allow_markup=true
+allow_images=true
+image_size=24
+
+## Search
+exec_search=true
+hide_search=true
+parse_search=false
+insensitive=true
+prompt='Bye bye!'
+
+## Other
+hide_scroll=true
+no_actions=true
+sort_order=default
+gtk_dark=true
+filter_rate=100
+close_on_focus_loss=false
+allow_mouse=true
+
+## Keys
+key_expand=Tab
+key_exit=Escape
+single_click=true

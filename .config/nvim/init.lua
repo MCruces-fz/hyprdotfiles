@@ -1,0 +1,40 @@
+-- Basic options
+local opt = vim.opt  -- alias 
+
+opt.tabstop = 4
+
+-- Enable numbering
+opt.number = true
+opt.relativenumber = true
+
+-- Enable syntax highlighting
+vim.cmd("syntax on")
+
+-- Use 256 colors if supported
+--opt.t_Co = 256
+
+-- Allow Vim to access the system clipboard
+-- This makes Vim use both the CLIPBOARD (+) and PRIMARY (*) registers
+opt.clipboard = { "unnamedplus", "unnamed" }
+
+-- Now:
+-- 	y, d, p will work with the system clipboard (CLIPBOARD)
+-- 	The PRIMARY selection (*) can still be accessed explicitly with "*y, "*p
+--
+-- Example:
+-- 	"+yy -> yank current line to CLIPBOARD (Ctrl+C / Ctrl+V buffer) 
+-- 	"*yy -> yank current line to PRIMARY (mouse middle-click buffer) 
+-- 	"+p -> paste from CLIPBOARD 
+-- 	"*p -> paste from PRIMARY
+
+
+-- Keymaps
+local keymap = vim.keymap  -- alias
+
+-- Optional: map Ctrl+C / Ctrl+V inside Vim
+
+-- Visual mode: copy selection to CLIPBOARD with Ctrl+C
+keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
+
+-- Insert mode: paste from CLIPBOARD with Ctrl+V
+keymap.set("i", "<C-v>", '<Esc>"+pa', { noremap = true, silent = true })

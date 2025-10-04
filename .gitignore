@@ -1,0 +1,35 @@
+# .gitignore
+
+#####################
+# B L A C K L I S T #
+#####################
+
+/*
+
+
+#####################
+# W H I T E L I S T #
+#####################
+
+# Git
+!.gitignore
+
+# Bash
+!.bashrc
+
+# Configs
+!.config/
+.config/*
+
+# Neovim
+!.config/nvim/
+.config/nvim/*
+!.config/nvim/init.lua
+!.config/nvim/init.vim.old
+
+# Waybar
+!.config/waybar
+
+# Hyprland
+!.config/hypr
+

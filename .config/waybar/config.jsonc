@@ -1,0 +1,307 @@
+// check icons with: fc-list | grep -i nerd
+// to explore with visuals: `gucharmap` or better https://www.nerdfonts.com/cheat-sheet
+// to debug: waybar -l debug
+{
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"hyprland/workspaces",
+		"custom/arrow10",
+		"hyprland/window"
+	],
+
+	// "modules-center": [
+	// 	"wlr/taskbar"
+	// ],
+
+	"modules-right": [
+		"custom/arrow9",
+		"pulseaudio",
+
+		"custom/arrow8",
+		"network",
+
+		"custom/arrow7",
+		"memory",
+
+		"custom/arrow6",
+		"cpu",
+
+		"custom/arrow5",
+		"temperature",
+
+		"custom/arrow4",
+		"battery",
+
+		"custom/arrow3",
+		// "hyprland/language",
+
+		"custom/arrow2",
+		"tray",
+		"clock#date",
+
+		"custom/arrow1",
+		"clock#time",
+
+		"custom/power"
+	],
+
+	// Modules
+
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"format-alt": "{icon} {title}",
+		"icon-size": 18,
+		// "icon-theme": "Papirus",
+		"icon-theme": "Adwaita",
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-right": "close"
+	},
+
+
+	"custom/power": {
+		"format": " ⏻ ",
+		"tooltip": false,
+		// "on-click": "wofi --conf ~/.config/waybar/wofipwrcfg <<< '\tPoweroff\n\tReboot\n\tSuspend\n\tLock' | xargs --no-run-if-empty systemctl"
+		"on-click": "~/.config/waybar/actions/power/power_selector.sh"
+	},
+
+	"battery": {
+		"interval": 10,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format-time": "{H}:{M:02}",
+		"format": "{icon} {capacity}%",
+		"format-alt": "{icon} {capacity}% ({time})",
+		"format-charging": " {capacity}% ({time})",
+		"format-charging-full": " {capacity}%",
+		"format-full": "{icon} {capacity}%",
+		"format-alt": "{icon} {power}W",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": true,
+		"tooltip-format": "charged {capacity}% | {power} Watts output"
+	},
+
+	"clock#time": {
+		"interval": 10,
+		"format": "{:%H:%M}",
+		"tooltip": true
+	},
+
+	"clock#date": {
+		"interval": 20,
+		"format": "{:%e %b %Y}",
+		"tooltip": false,
+		"tooltip-format": "{:%e %B %Y}"
+	},
+
+	"cpu": {
+		"interval": 5,
+		"tooltip": false,
+		"format": " {usage}%",
+		"format-alt": " {load}",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+
+	"hyprland/language": {
+		"format": " {}",
+		"min-length": 5,
+		"on-click": "hyprctl switchxkblayout device next",
+		"tooltip": false
+	},
+
+	"memory": {
+		"interval": 5,
+		"format": " {used:0.1f}G/{total:0.1f}G",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		},
+		"tooltip": false
+	},
+
+	"network": {
+		"interval": 5,
+		"format-wifi": " {essid} ({signalStrength}%)",
+		"format-ethernet": "󰈀 {ifname}",
+		"format-disconnected": "󰟦 No connection  ",
+		"format-alt": "󰩠 {ipaddr}/{cidr}",
+		"tooltip": false
+	},
+
+	// https://man.archlinux.org/man/extra/waybar/waybar-hyprland-window.5.en
+	"hyprland/window": {
+		"format": "{}",
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "  $1",
+			"(.*) — Dolphin": "󱢴  ( $1 )",
+			"(.*) - Brave": "  ~[ $1 ]~",
+			"(.*) - VLC media player": "󰕼  $1",
+			"(.*) - zsh": ">[$1]"
+		}
+	},
+
+
+	// https://man.archlinux.org/man/extra/waybar/waybar-hyprland-workspaces.5.en
+	"hyprland/workspaces": {
+		"format": "{icon} {windows}",
+		"format-icons": {
+			"1": "󰎤",
+			"2": "󰎧",
+			"3": "󰎪",
+			"4": "󰎭",
+			"5": "󰎱",
+			"6": "󰎳",
+			"7": "󰎶",
+			"8": "󰎹",
+			"9": "󰎼",
+			"10": "󰽽"
+		},
+		"format-window-separator": "",
+		"window-rewrite-default": "",
+		"window-rewrite":{
+			"class<firefox>": " ",
+			"class<Alacritty>": " ",
+			"class<vlc>": "󰕼 ",
+			"class<brave-browser>": ""
+		}
+	},
+
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{icon} {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "󰋎",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			// "hdmi": "󰍹",
+			"default": ["", ""]
+		},
+		"scroll-step": 1,
+		"on-click": "pavucontrol",
+		"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "helvum",
+		"menu":"qpwgraph",
+		"tooltip": true
+	},
+
+	// "custom/pipewire": {
+	// 	"exec": "pw-volume status",
+	// 	"return-type": "json",
+	// 	"interval": "once",
+	// 	"signal": 8,
+	// 	"format": "{icon} {percentage}",
+	// 	"format-icons": {
+	// 		"mute": "",
+	// 		"default": ["",""]
+	// 	},
+	// 	"on-click": "pw-volume mute toggle && pkill -RTMIN+8 waybar",
+	// 	"on-scroll-up": "pw-volume change +1% && pkill -RTMIN+8 waybar",
+	// 	"on-scroll-down": "pw-volume change -1% && pkill -RTMIN+8 waybar"
+	// },
+
+	// "wireplumber#sink": {
+	// 	"format": "{volume}% {icon}",
+	// 	"format-muted": "",
+	// 	"format-icons": ["", "", ""],
+	// 	"on-click": "helvum",
+	// 	"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	// 	"scroll-step": 5
+	// },
+	// "wireplumber#source": {
+	// 	"node-type": "Audio/Source",
+	// 	"format": "{volume}% ",
+	// 	"format-muted": "",
+	// 	"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+	// 	"scroll-step": 5
+	// },
+
+	"temperature": {
+		"critical-threshold": 90,
+		"interval": 5,
+		"format": "{icon} {temperatureC}°",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": false
+	},
+
+	"tray": {
+		"icon-size": 18
+		//"spacing": 10
+	},
+
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	}
+}
+
+// vi:ft=jsonc

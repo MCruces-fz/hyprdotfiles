@@ -24,6 +24,11 @@
 # Alacritty
 !.config/alacritty/
 
+# CopyQ
+!.config/copyq/
+.config/copyq/*
+!.config/copyq/copyq.conf
+
 # Hyprland
 !.config/hypr
 

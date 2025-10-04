@@ -1,0 +1,34 @@
+# Help: https://alacritty.org/config-alacritty.html
+
+
+[window]
+
+decorations = "Full"
+
+padding = { x = 9, y = 7 }
+
+opacity = 0.95
+blur = true
+
+
+[cursor]
+
+style = { shape = "Block", blinking = "On"}
+
+blink_interval = 500 # milliseconds
+blink_timeout = 10 # seconds
+
+
+[bell]
+
+# anumation = "Ease"
+
+
+[mouse]
+
+hide_when_typing = true
+
+
+[font]
+
+normal = { family = "JetBrainsMono Nerd Font" }

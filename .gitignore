@@ -21,6 +21,12 @@
 !.config/
 .config/*
 
+# Alacritty
+!.config/alacritty/
+
+# Hyprland
+!.config/hypr
+
 # Neovim
 !.config/nvim/
 .config/nvim/*
@@ -29,7 +35,3 @@
 
 # Waybar
 !.config/waybar
-
-# Hyprland
-!.config/hypr
-

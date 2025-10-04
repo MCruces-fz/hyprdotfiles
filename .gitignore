@@ -40,3 +40,11 @@
 
 # Waybar
 !.config/waybar
+
+# Wofi
+!.config/wofi
+.config/wofi/*
+!.config/wofi/colors
+!.config/wofi/config
+!.config/wofi/style.css
+

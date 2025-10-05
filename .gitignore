@@ -38,6 +38,12 @@
 !.config/nvim/init.lua
 !.config/nvim/init.vim.old
 
+# SwayNC
+!.config/swaync/
+.config/swaync/*
+!.config/swaync/style.css
+!.config/swaync/config.json
+
 # User Dirs
 !.config/user-dirs.dirs
 !.config/user-dirs.locale

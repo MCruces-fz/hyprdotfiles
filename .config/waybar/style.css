@@ -74,6 +74,7 @@
 #clock,
 #cpu,
 #language,
+#custom-notification,
 #memory,
 #network,
 #pulseaudio,
@@ -175,6 +176,11 @@
 }
 
 #language {
+	background: @layout;
+	color: @black;
+}
+
+#custom-notification {
 	background: @layout;
 	color: @black;
 }

@@ -36,6 +36,7 @@
 
 		"custom/arrow3",
 		// "hyprland/language",
+		"custom/notification",
 
 		"custom/arrow2",
 		"tray",
@@ -53,8 +54,8 @@
 		"format": "{icon}",
 		"format-alt": "{icon} {title}",
 		"icon-size": 18,
-		// "icon-theme": "Papirus",
 		"icon-theme": "Adwaita",
+		// "icon-theme": "Dracula",
 		"tooltip-format": "{title}",
 		"on-click": "activate",
 		"on-click-right": "close"
@@ -64,7 +65,6 @@
 	"custom/power": {
 		"format": " ⏻ ",
 		"tooltip": false,
-		// "on-click": "wofi --conf ~/.config/waybar/wofipwrcfg <<< '\tPoweroff\n\tReboot\n\tSuspend\n\tLock' | xargs --no-run-if-empty systemctl"
 		"on-click": "~/.config/waybar/actions/power/power_selector.sh"
 	},
 
@@ -121,6 +121,27 @@
 		"min-length": 5,
 		"on-click": "hyprctl switchxkblayout device next",
 		"tooltip": false
+	},
+
+	"custom/notification": {
+		"tooltip": false,
+		"format": "{icon}",
+		"format-icons": {
+			"notification": "<span foreground='red'><sup></sup></span>",
+			"none": "",
+			"dnd-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-none": "",
+			"inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"inhibited-none": "",
+			"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+			"dnd-inhibited-none": ""
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
 	},
 
 	"memory": {

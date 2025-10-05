@@ -38,6 +38,10 @@
 !.config/nvim/init.lua
 !.config/nvim/init.vim.old
 
+# User Dirs
+!.config/user-dirs.dirs
+!.config/user-dirs.locale
+
 # Waybar
 !.config/waybar
 

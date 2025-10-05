@@ -1,7 +1,9 @@
 -- Basic options
 local opt = vim.opt  -- alias 
 
-opt.tabstop = 4
+opt.tabstop = 4 -- Always 8 (see :g tabstop)
+opt.softtabstop = 4
+opt.shiftwidth = 4
 
 -- Enable numbering
 opt.number = true

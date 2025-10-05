@@ -44,19 +44,21 @@ echo "  Workspace ID in focused monitor: $focused_wks_id"
 echo "             Unfocused monitor ID: $unfocused_mntr_id"
 echo "Workspace ID in unfocused monitor: $unfocused_wks_id"
 
+function noti { notify-send --expire-time=500 $1;}
+
 if [[ ${operation^^} == "BRING" ]]; then
-    notify-send "Bring workspace $src_wks_id to focused monitor.";
+    noti "Bring workspace $src_wks_id to focused monitor.";
 	hyprctl dispatch moveworkspacetomonitor $src_wks_id $focused_mntr_id;
 	hyprctl dispatch workspace $src_wks_id;
 elif [[ ${operation^^} == "SWITCH" ]]; then
-    notify-send "Switch workspaces between monitors.";
+    noti "Switch workspaces between monitors.";
 	hyprctl dispatch moveworkspacetomonitor $unfocused_wks_id $focused_mntr_id;
 	hyprctl dispatch moveworkspacetomonitor $focused_wks_id $unfocused_mntr_id;
 	hyprctl dispatch workspace $unfocused_wks_id;
 elif [[ ${operation^^} == "MOVE" ]]; then
-    notify-send "Move workspace $src_wks_id to focused monitor.";
+    noti "Move workspace $src_wks_id to focused monitor.";
 	hyprctl dispatch moveworkspacetomonitor $src_wks_id $focused_mntr_id;
 	hyprctl dispatch movetoworkspace $src_wks_id;
 else
-   notify-send "Nothing to do with workspaces.";
+   noti "Nothing to do with workspaces.";
 fi

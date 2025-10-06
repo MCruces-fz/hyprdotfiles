@@ -1,12 +1,15 @@
 ## Wofi Config
 
 ## General
-show=drun
+show=drun,run
 prompt=Apps
 normal_window=true
 layer=top
 term=alacritty
 close_on_focus_loss=true
+
+## MODE configs
+# always_parse_args=true
 
 ## Geometry
 width=500px
@@ -16,6 +19,7 @@ orientation=vertical
 halign=fill
 line_wrap=off
 dynamic_lines=false
+# print_line_num=true
 
 ## Images
 allow_markup=true

@@ -1,0 +1,7 @@
+--[[
+vim.cmd("filetype plugin indent on")
+vim.cmd("syntax enable")
+vim.cmd("set number")
+vim.cmd("set ruler")
+vim.cmd("set relativenumber")
+]]

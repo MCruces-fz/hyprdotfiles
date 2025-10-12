@@ -171,7 +171,8 @@
 			"(.*) — Dolphin": "󱢴  ( $1 )",
 			"(.*) - Brave": "  ~[ $1 ]~",
 			"(.*) - VLC media player": "󰕼  $1",
-			"(.*) - zsh": ">[$1]"
+			"(.*) - zsh": ">[$1]",
+			"Yazi: (.*)": "󰇥 $1"
 		}
 	},
 
@@ -197,7 +198,9 @@
 			"class<firefox>": " ",
 			"class<Alacritty>": " ",
 			"class<vlc>": "󰕼 ",
-			"class<brave-browser>": " "
+			"class<brave-browser>": " ",
+			"class<org.pwmt.zathura>": " ",
+			"title<Yazi: (.*)>": "󰇥 "
 		}
 	},
 

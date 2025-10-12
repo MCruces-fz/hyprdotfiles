@@ -1,0 +1,34 @@
+[opener]
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open" },
+]
+read_pdf = [
+	{ run = 'zathura "$@"' , desc = "Read PDF", orphan = true, for = "unix"}
+]
+
+[open]
+prepend_rules = [
+	# Plain Text
+	{ name = "*.json", use = "edit" },
+	{ name = "*.tex", use = "edit" },
+	{ name = "*.md", use = "edit" },
+	{ name = "*.txt", use = "edit" },
+
+	# Media
+	{ name = "*.mp3", use = "play" },
+
+	# Multiple openers for a single rule
+	{ name = "*.html", use = [ "open", "edit" ] },
+
+	{ name = "*.pdf", use = "read_pdf" },
+]
+
+# append_rules = [
+# 	{ name = "*", use = "my-fallback" },
+# ]

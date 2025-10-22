@@ -64,4 +64,5 @@ require("options")
 require("lazy").setup("plugins")
 require("keymaps")
 require("autocmds")
+require("lualine").setup()
 

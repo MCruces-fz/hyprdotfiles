@@ -64,5 +64,9 @@ require("options")
 require("lazy").setup("plugins")
 require("keymaps")
 require("autocmds")
-require("lualine").setup()
+require("lualine").setup {
+	options = {
+		theme = "dracula"
+	}
+}
 

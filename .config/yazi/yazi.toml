@@ -1,15 +1,21 @@
 [opener]
 play = [
-	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv "$@"', desc = "Play with mpv", orphan = true, for = "unix" },
 ]
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix" },
+	{ run = 'nvim "$@"', desc = "Edit with nvim", block = true, for = "unix" },
 ]
 open = [
-	{ run = 'xdg-open "$@"', desc = "Open" },
+	{ run = 'xdg-open "$@"', desc = "Open XDG open", for = "unix" },
 ]
 read_pdf = [
 	{ run = 'zathura "$@"' , desc = "Read PDF", orphan = true, for = "unix"}
+]
+open_img = [
+	{ run = 'satty --filename "$@"', desc = "View image", orphan = true, for = "unix" }
+]
+edit_img = [
+	{ run = 'gimp "$@"', desc = "Edit with GIMP", orphan = true, for = "unix" }
 ]
 
 [open]
@@ -22,6 +28,10 @@ prepend_rules = [
 
 	# Media
 	{ name = "*.mp3", use = "play" },
+
+	{ name = "*.png", use = ["open_img", "edit_img"] },
+	{ name = "*.jpg", use = ["open_img", "edit_img"] },
+	{ name = "*.jpeg", use = ["open_img", "edit_img"] },
 
 	# Multiple openers for a single rule
 	{ name = "*.html", use = [ "open", "edit" ] },

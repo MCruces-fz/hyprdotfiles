@@ -1,7 +1,7 @@
 ## Wofi Config
 
 ## General
-show=drun,run
+show=drun
 prompt=Apps
 normal_window=true
 layer=top

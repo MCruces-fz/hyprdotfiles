@@ -1,6 +1,6 @@
 [opener]
 play = [
-	{ run = 'mpv "$@"', desc = "Play with mpv", orphan = true, for = "unix" },
+	{ run = 'mpv --player-operation-mode=pseudo-gui "$@"', desc = "Play with mpv", orphan = true, for = "unix" },
 ]
 edit = [
 	{ run = 'nvim "$@"', desc = "Edit with nvim", block = true, for = "unix" },

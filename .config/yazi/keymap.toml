@@ -1,0 +1,5 @@
+[[mgr.prepend_keymap]]
+# https://github.com/sxyazi/yazi/discussions/2304
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"

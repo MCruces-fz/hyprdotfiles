@@ -17,6 +17,9 @@ open_img = [
 edit_img = [
 	{ run = 'gimp "$@"', desc = "Edit with GIMP", orphan = true, for = "unix" }
 ]
+launch = [
+	{ run = 'gtk-launch "$@"', desc = "Launch App", orphan = true, for = "unix" }
+]
 
 [open]
 prepend_rules = [
@@ -32,6 +35,10 @@ prepend_rules = [
 	{ name = "*.png", use = ["open_img", "edit_img"] },
 	{ name = "*.jpg", use = ["open_img", "edit_img"] },
 	{ name = "*.jpeg", use = ["open_img", "edit_img"] },
+
+	# Apps
+	{ name = "*.desktop", use = ["launch", "edit"] },
+
 
 	# Multiple openers for a single rule
 	{ name = "*.html", use = [ "open", "edit" ] },

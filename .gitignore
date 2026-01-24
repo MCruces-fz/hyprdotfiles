@@ -67,3 +67,12 @@
 
 # Kitty
 !.config/kitty
+
+# Media
+!media/
+media/*
+!media/images/
+media/images/*
+!media/images/wallpaper/
+media/images/wallpaper/*
+!media/images/wallpaper/studio_ghibli_coffee_shop.jpg

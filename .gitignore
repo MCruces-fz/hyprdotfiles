@@ -64,3 +64,6 @@
 
 # Zathura
 !.config/zathura
+
+# Kitty
+!.config/kitty

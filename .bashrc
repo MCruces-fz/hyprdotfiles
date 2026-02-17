@@ -13,6 +13,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias tree='tree -C'
 alias ffuf='ffuf -c'
+alias dd='dd status=progress'
 
 alias dotager="/usr/bin/env git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 

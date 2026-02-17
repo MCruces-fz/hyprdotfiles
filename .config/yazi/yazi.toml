@@ -31,6 +31,7 @@ prepend_rules = [
 
 	# Media
 	{ name = "*.mp3", use = "play" },
+	{ name = "*.ogg", use = "play" },
 
 	{ name = "*.png", use = ["open_img", "edit_img"] },
 	{ name = "*.jpg", use = ["open_img", "edit_img"] },

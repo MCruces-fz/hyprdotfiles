@@ -69,4 +69,4 @@ require("lualine").setup {
 		theme = "dracula"
 	}
 }
-
+require("nvim-treesitter").install({ 'python', 'rust' })

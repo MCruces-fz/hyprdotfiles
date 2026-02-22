@@ -9,6 +9,9 @@ opt.shiftwidth = 4
 opt.number = true
 opt.relativenumber = true
 
+-- Enable syntax highlighting
+vim.cmd("syntax on")
+
 -- Use 256 colors if supported
 --opt.t_Co = 256
 

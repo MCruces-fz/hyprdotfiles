@@ -17,5 +17,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	-- performance = {
+	-- 	rtp = {
+	-- 		reset = false, -- to deactivate the runtimepath reset
+	-- 	}
+	-- }
 	{ import = "plugins" }, --> loads lua/plugins/*.lua
 })

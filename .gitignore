@@ -36,7 +36,6 @@
 !.config/nvim/
 .config/nvim/*
 !.config/nvim/init.lua
-!.config/nvim/init.vim.old
 !.config/nvim/lua/
 
 # SwayNC

@@ -1,52 +1,98 @@
 [opener]
 play = [
-	{ run = 'mpv --player-operation-mode=pseudo-gui "$@"', desc = "Play with mpv", orphan = true, for = "unix" },
+	{
+		desc = "Play with mpv", 
+		run = 'mpv --player-operation-mode=pseudo-gui "$@"', 
+		orphan = true, 
+		for = "unix" 
+	},
 ]
 edit = [
-	{ run = 'nvim "$@"', desc = "Edit with nvim", block = true, for = "unix" },
-]
-open = [
-	{ run = 'xdg-open "$@"', desc = "Open XDG open", for = "unix" },
+	{
+		desc = "Edit with nvim", 
+		run = 'nvim "$@"', 
+		block = true, 
+		for = "unix" 
+	},
+	{
+		desc = "Edit with gedit", 
+		run = 'gedit "$@"', 
+		orphan = true,
+		block = false, 
+		for = "unix" 
+	},
 ]
 read_pdf = [
-	{ run = 'zathura "$@"' , desc = "Read PDF", orphan = true, for = "unix"}
+	{
+		desc = "Read PDF (zathura)",
+		run = 'zathura "$@"',
+		orphan = true, 
+		for = "unix"
+	}
 ]
 open_img = [
-	{ run = 'satty --filename "$@"', desc = "View image", orphan = true, for = "unix" }
-]
-edit_img = [
-	{ run = 'gimp "$@"', desc = "Edit with GIMP", orphan = true, for = "unix" }
+	{
+		desc = "View with nomacs", 
+		run = 'nomacs "$@"', 
+		orphan = true, 
+		block = false, 
+		for = "unix" 
+	},
+	{
+		desc = "View/edit with satty", 
+		run = 'satty --filename "$@"', 
+		orphan = true, 
+		block = false, 
+		for = "unix" 
+	},
+	{ 
+		desc = "Edit with GIMP", 
+		run = 'gimp "$@"', 
+		orphan = true, 
+		block = false, 
+		for = "unix" 
+	},
 ]
 launch = [
-	{ run = 'gtk-launch "$@"', desc = "Launch App", orphan = true, for = "unix" }
+	{ 
+		desc = "Launch GTK App", 
+		run = 'gtk-launch "$@"', 
+		orphan = true, 
+		for = "unix" 
+	}
+]
+open = [
+	{
+		desc = "Open XDG open",
+		run = 'xdg-open "$@"',
+		for = "unix"
+	},
 ]
 
 [open]
 prepend_rules = [
 	# Plain Text
-	{ name = "*.json", use = "edit" },
-	{ name = "*.tex", use = "edit" },
-	{ name = "*.md", use = "edit" },
-	{ name = "*.txt", use = "edit" },
+	{ mime = "text/*",  use = "edit" },
 
 	# Media
-	{ name = "*.mp3", use = "play" },
-	{ name = "*.ogg", use = "play" },
+	{ mime = "audio/*", use = "play" },
+	{ mime = "video/*", use = "play" },
+	# { url = "*.mp3", use = "play" },
+	# { url = "*.ogg", use = "play" },
 
-	{ name = "*.png", use = ["open_img", "edit_img"] },
-	{ name = "*.jpg", use = ["open_img", "edit_img"] },
-	{ name = "*.jpeg", use = ["open_img", "edit_img"] },
+	{ mime = "image/*", use = "open_img" },
 
 	# Apps
-	{ name = "*.desktop", use = ["launch", "edit"] },
+	{ url = "*.desktop", use = ["launch", "edit"] },
 
 
 	# Multiple openers for a single rule
-	{ name = "*.html", use = [ "open", "edit" ] },
+	{ url = "*.html", use = [ "open", "edit" ] },
 
-	{ name = "*.pdf", use = "read_pdf" },
+	# { name = "*.pdf", use = "read_pdf" },
+	{ mime = "application/pdf", use = "read_pdf" },
 ]
 
-# append_rules = [
-# 	{ name = "*", use = "my-fallback" },
-# ]
+append_rules = [
+	{ name = "*", use = ["open"] },
+]

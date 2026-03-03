@@ -31,3 +31,5 @@ PS1="\[$(tput setaf 33)\]\u\[$(tput setaf 69)\]@\[$(tput setaf 105)\]\h \[$(tput
 export PATH="$PATH:/home/mcruces/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# To use fnm as node version manager
+eval "$(fnm env --use-on-cd --shell bash)"

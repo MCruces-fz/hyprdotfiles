@@ -70,8 +70,8 @@ open = [
 ]
 
 [open]
-# prepend_rules = [
-append_rules = [
+prepend_rules = [
+# append_rules = [
 	# Plain Text
 	{ mime = "text/*",  use = "edit" },
 
@@ -93,6 +93,10 @@ append_rules = [
 	# { url = "*.pdf", use = ["read_pdf", "open_img"] },
 	{ mime = "application/pdf", use = "read_pdf" },
 ]
+
+# append_rules = [
+# 	{ url = "*", use = [ "open", "reveal" ] },
+# ]
 
 [mgr]
 ratio=[1, 4, 3] # 1/8, 4/8, 3/8

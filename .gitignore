@@ -38,6 +38,9 @@
 !.config/nvim/init.lua
 !.config/nvim/lua/
 
+# npm
+!.npmrc
+
 # SwayNC
 !.config/swaync/
 .config/swaync/*

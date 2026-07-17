@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Comprobamos si ya existe una ventana con la clase 'nota_rapida'
+if hyprctl clients | grep -q "class: quick_note"; then
+    # Si ya existe, solo alternamos la visibilidad del workspace especial
+    hyprctl dispatch togglespecialworkspace notes
+else
+    # Si no existe, la creamos y la mostramos al mismo tiempo
+    hyprctl dispatch exec "[workspace special:notes silent;float;size 75% 75%;center] kitty --class quick_note -e ~/.local/bin/my_notes.sh"
+    hyprctl dispatch togglespecialworkspace notes 
+fi
+
+# TODO: Negar la cláusula del `if` y solamente generar la ventana cundo se cumpla, pero hacer toggle siempre.
+# TODO: forzar el foco en la ventana de las notas.

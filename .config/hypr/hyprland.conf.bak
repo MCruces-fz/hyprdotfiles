@@ -1,6 +1,6 @@
-# #######################################################################################
-# EDIT THIS CONFIG ACCORDING TO THE WIKI INSTRUCTIONS.
-# #######################################################################################
+########################################################
+# EDIT THIS CONFIG ACCORDING TO THE WIKI INSTRUCTIONS. #
+########################################################
 # This is an example Hyprland config file.
 # Refer to the wiki for more information.
 # https://wiki.hypr.land/Configuring/
@@ -195,8 +195,8 @@ animations {
     animation = fadeLayersIn,  1,     1.79,  almostLinear
     animation = fadeLayersOut, 1,     1.39,  almostLinear
     animation = workspaces,    1,     1.94,  almostLinear, fade
-    animation = workspacesIn,  1,     1.21,  almostLinear, fade
-    animation = workspacesOut, 1,     1.94,  almostLinear, fade
+    animation = workspacesIn,  1,     1.21,  almostLinear, slidefade 20%
+    animation = workspacesOut, 1,     1.94,  almostLinear, slidefade 20%
     animation = zoomFactor,    1,     7,     quick
 }
 

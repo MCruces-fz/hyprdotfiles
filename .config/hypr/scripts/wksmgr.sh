@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+echo "Ejecutado con arg: $1 y $2" >> /tmp/hypr_script.log
+
+# 1. Asegurar que el script herede el socket correcto de la sesión actual de Hyprland
+export HYPRLAND_INSTANCE_SIGNATURE=$(ls -t $XDG_RUNTIME_DIR/hypr/ | head -n 1)
+
+# 2. Asegurar que los binarios del sistema estén en el PATH del script
+export PATH=$PATH:/usr/bin:/usr/local/bin
+
+# 3. Guardar también los errores del script en tu log para ver qué pasa exactamente
+exec 2>> /tmp/hypr_script_errors.log
+
 operation=$1  # Operation: SWITCH, BRING
 src_wks_id=$2 # Source Workspace ID
 
@@ -49,6 +60,7 @@ function noti { notify-send --expire-time=500 $1;}
 if [[ ${operation^^} == "BRING" ]]; then
     noti "Bring workspace $src_wks_id to focused monitor.";
 	hyprctl dispatch moveworkspacetomonitor $src_wks_id $focused_mntr_id;
+	sleep 0.05
 	hyprctl dispatch workspace $src_wks_id;
 elif [[ ${operation^^} == "SWITCH" ]]; then
     noti "Switch workspaces between monitors.";

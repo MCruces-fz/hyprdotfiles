@@ -4,6 +4,7 @@
 
 ---@module 'hl'
 
+---
 ----------------------------------------------------------
 -- EDIT THIS CONFIG ACCORDING TO THE WIKI INSTRUCTIONS. --
 ----------------------------------------------------------
@@ -201,9 +202,9 @@ hl.config({
     input = {
         kb_layout = "us",
         kb_variant = "intl",
-        kb_model = {  },
-        kb_options = {  },
-        kb_rules = {  },
+        -- kb_model = {  },
+        -- kb_options = {  },
+        -- kb_rules = {  },
         follow_mouse = 1,
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
         touchpad = {
@@ -270,38 +271,44 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "N", hl.dsp.exec_cmd("~/.local/b
 --= WORKSPACE =--
 --=============--
 -- Workspace Manager Script
-local wksmgr = "~/.config/hypr/scripts/wksmgr.sh"
+local home = os.getenv("HOME")
+-- local wksmgr = home .. "/.config/hypr/scripts/wksmgr.sh"
+-- local wksmgr = "~/.config/hypr/scripts/wksmgr.sh"
+local wksmgr = "~/.config/hypr/scripts/wksmgr4lua.sh"
 
 -- Generate binds automatically from 1 to 9
 for i = 0, 9 do
     local key = tostring(i)
     local ws = (i == 0) and 10 or i -- if 0 => then workspace is 10, else it's `i`
+	local ws_str = tostring(ws)
+
 	-- Switch workspaces with mainMod + [0-9]
-    hl.bind(mainMod, key, hl.dsp.exec_cmd(wksmgr .. " bring " .. ws))
+    hl.bind(mainMod .. "+" .. key, hl.dsp.exec_cmd(wksmgr .. " bring " .. ws_str))
+
 	-- Move active window to a workspace with mainMod + SHIFT + [0-9]
-    hl.bind(mainMod .. " SHIFT", key, hl.dsp.window.move({ workspace = ws }))
+    hl.bind(mainMod .. "+SHIFT+" .. key, hl.dsp.window.move({ workspace = ws }))
 end
 
 -- Switch workspaces to each other monitor
-hl.bind(mainMod .. " SHIFT", "TAB", hl.dsp.exec_cmd(wksmgr .. " switch"))
+hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(wksmgr .. " switch"))
 
 -- Example special workspace (scratchpad)
 -- hl.bind(mainMod, "S", hl.dsp.special_workspace.toggle({ name = "magic" }))
 -- hl.bind(mainMod .. " SHIFT", "S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod, "TAB", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " SHIFT", "TAB", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod, "mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod, "mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod, "mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag, { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Mover el workspace actual a un monitor específico
-hl.bind(mainMod .. " CTRL", "h", hl.dsp.workspace.move_to_monitor({ monitor = "current", workspace = "1" }))
-hl.bind(mainMod .. " CTRL", "l", hl.dsp.workspace.move_to_monitor({ monitor = "1" }))
+hl.bind(mainMod .. " + CTRL + h", function() hl.dsp.workspace.move_to_monitor({ monitor = "current", workspace = "1" }) end)
+hl.bind(mainMod .. " + CTRL + l", function() hl.dsp.workspace.move_to_monitor({ monitor = "1" }) end)
 
 hl.env("HYPRSHOT_DIR", "~/media/images/screenshots")
 local screenshot_cmd = [[
@@ -314,7 +321,7 @@ local screenshot_cmd = [[
 ]]
 
 -- Bind for screenshots (modifier key is empty "" 'cause doesn't use mainMod)
-hl.bind("", "PRINT", hl.dsp.exec_cmd(screenshot_cmd))
+hl.bind("PRINT", hl.dsp.exec_cmd(screenshot_cmd))
 
 
 --=================================================--
@@ -332,7 +339,7 @@ local media_keys = {
 }
 
 for _, key in ipairs(media_keys) do
-    hl.bind("", key[1], hl.dsp.exec_cmd(key[2]), { locked = true, e = true })
+    hl.bind(key[1], hl.dsp.exec_cmd(key[2]), { locked = true, e = true })
 end
 
 -- Tabla para las teclas de control de reproducción (equivalente a bindl -> locked)
@@ -344,7 +351,7 @@ local player_keys = {
 }
 
 for _, key in ipairs(player_keys) do
-    hl.bind("", key[1], hl.dsp.exec_cmd(key[2]), { locked = true })
+    hl.bind(key[1], hl.dsp.exec_cmd(key[2]), { locked = true })
 end
 
 

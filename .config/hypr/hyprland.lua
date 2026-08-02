@@ -270,27 +270,45 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "N", hl.dsp.exec_cmd("~/.local/b
 --=============--
 --= WORKSPACE =--
 --=============--
+
+
 -- Workspace Manager Script
 local home = os.getenv("HOME")
--- local wksmgr = home .. "/.config/hypr/scripts/wksmgr.sh"
--- local wksmgr = "~/.config/hypr/scripts/wksmgr.sh"
-local wksmgr = "~/.config/hypr/scripts/wksmgr4lua.sh"
+local Workspace = require("workspaces")
 
 -- Generate binds automatically from 1 to 9
 for i = 0, 9 do
     local key = tostring(i)
     local ws = (i == 0) and 10 or i -- if 0 => then workspace is 10, else it's `i`
-	local ws_str = tostring(ws)
+	-- local ws_str = tostring(ws)
 
 	-- Switch workspaces with mainMod + [0-9]
-    hl.bind(mainMod .. "+" .. key, hl.dsp.exec_cmd(wksmgr .. " bring " .. ws_str))
+    -- hl.bind(mainMod .. "+" .. key, hl.dsp.exec_cmd(wksmgr .. " bring " .. ws_str))
+	hl.bind(
+        mainMod .. "+" .. key,
+        function()
+            Workspace.bring(ws)
+        end
+    )
 
 	-- Move active window to a workspace with mainMod + SHIFT + [0-9]
-    hl.bind(mainMod .. "+SHIFT+" .. key, hl.dsp.window.move({ workspace = ws }))
+    -- hl.bind(mainMod .. "+SHIFT+" .. key, hl.dsp.window.move({ workspace = ws }))
+	hl.bind(
+        mainMod .. "+SHIFT+" .. key,
+        function()
+            Workspace.move_window(ws)
+        end
+    )
 end
 
 -- Switch workspaces to each other monitor
-hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(wksmgr .. " switch"))
+-- hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(wksmgr .. " switch"))
+hl.bind(
+    mainMod .. "+SHIFT+TAB",
+    function()
+        Workspace.swap_monitors()
+    end
+)
 
 -- Example special workspace (scratchpad)
 -- hl.bind(mainMod, "S", hl.dsp.special_workspace.toggle({ name = "magic" }))

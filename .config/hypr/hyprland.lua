@@ -38,6 +38,8 @@ hl.monitor({
 --- MY PROGRAMS ---
 --------------------
 
+local home = os.getenv("HOME")
+
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 -- Set programs that you use
@@ -127,44 +129,62 @@ hl.config({
     },
 })
 
+
+--==============--
+--= Animations =--
+--==============--
+
 -- https://wiki.hypr.land/Configuring/Variables/#animations
 hl.config({
     animations = {
         enabled = true, -- yes, please :)  [joke was lost... :(]
-
-		-- Default curves, see https://wiki.hypr.land/Configuring/Animations/#curves
-        -- Bézier curves: { "name", x0, y0, x1, y1 }
-        bezier = {
-            { "easeOutQuint", 0.23, 1, 0.32, 1 },
-            { "easeInOutCubic", 0.65, 0.05, 0.36, 1 },
-            { "linear", 0, 0, 1, 1 },
-            { "almostLinear", 0.5, 0.5, 0.75, 1 },
-            { "quick", 0.15, 0, 0.1, 1 },
-        },
-
-		-- Default animations, see https://wiki.hypr.land/Configuring/Animations/
-        -- Animations: { "name", enabled(0/1), speed, "curve", "style" (optional) }
-        animation = {
-            { "global", 1, 10, "default" },
-            { "border", 1, 5.39, "easeOutQuint" },
-            { "windows", 1, 4.79, "easeOutQuint" },
-            { "windowsIn", 1, 4.1, "easeOutQuint", "popin 87%" },
-            { "windowsOut", 1, 1.49, "linear", "popin 87%" },
-            { "fadeIn", 1, 1.73, "almostLinear" },
-            { "fadeOut", 1, 1.46, "almostLinear" },
-            { "fade", 1, 3.03, "quick" },
-            { "layers", 1, 3.81, "easeOutQuint" },
-            { "layersIn", 1, 4, "easeOutQuint", "fade" },
-            { "layersOut", 1, 1.5, "linear", "fade" },
-            { "fadeLayersIn", 1, 1.79, "almostLinear" },
-            { "fadeLayersOut", 1, 1.39, "almostLinear" },
-            { "workspaces", 1, 1.94, "almostLinear", "fade" },
-            { "workspacesIn", 1, 1.21, "almostLinear", "slidefade" },
-            { "workspacesOut", 1, 1.94, "almostLinear", "slidefade" },
-            { "zoomFactor", 1, 7, "quick" },
-        },
     },
 })
+
+-- Bézier curves, see https://wiki.hypr.land/Configuring/Animations/#curves
+local bezier_curves = {
+    { name = "easeOutQuint",	x0 = 0.23,	y0 = 1,		x1 = 0.32,	y1 = 1		},
+    { name = "easeInOutCubic",	x0 = 0.65,	y0 = 0.05,	x1 = 0.36,	y1 = 1		},
+    { name = "linear",			x0 = 0,		y0 = 0,		x1 = 1,		y1 = 1		},
+    { name = "almostLinear",	x0 = 0.5,	y0 = 0.5,	x1 = 0.75,	y1 = 1		},
+    { name = "quick",			x0 = 0.15,	y0 = 0,		x1 = 0.1,	y1 = 1		},
+    { name = "lateBraking",		x0 = 0.25,	y0 = 0,		x1 = 0.70,	y1 = 1.35	},
+}
+
+-- Animaciones: { leaf_name, enabled_numeric, speed, bezier_name, style (opcional) }
+local animation_styles = {
+    { leaf="global",		speed=10,	bezier="default" },
+    { leaf="border",		speed=5.39,	bezier="easeOutQuint" },
+    { leaf="windows",		speed=4.79,	bezier="easeOutQuint" },
+    { leaf="windowsIn",		speed=1.65,	bezier="lateBreak",		style="popin 60%" },
+    { leaf="windowsOut",	speed=1.49,	bezier="linear",		style="popin 20%" },
+    { leaf="fadeIn",		speed=1.73,	bezier="almostLinear" },
+    { leaf="fadeOut",		speed=1.46,	bezier="almostLinear" },
+    { leaf="fade",			speed=3.03,	bezier="quick" },
+    { leaf="layers",		speed=3.81,	bezier="easeOutQuint" },
+    { leaf="layersIn",		speed=4,	bezier="easeOutQuint",	style="fade" },
+    { leaf="layersOut",		speed=1.5,	bezier="linear",		style="fade" },
+    { leaf="fadeLayersIn",	speed=1.79,	bezier="almostLinear" },
+    { leaf="fadeLayersOut",	speed=1.39,	bezier="almostLinear" },
+    { leaf="workspaces",	speed=1.94,	bezier="almostLinear",	style="fade" },
+    { leaf="workspacesIn",	speed=1.21,	bezier="almostLinear",	style="slide" },
+    { leaf="workspacesOut",	speed=1.94,	bezier="almostLinear",	style="slide" },
+    { leaf="zoomFactor",	speed=7,	bezier="quick" },
+}
+
+-- Register Bézier curves
+for _, b in ipairs(bezier_curves) do
+    hl.curve(b.name, {
+        type = "bezier",
+        points = { { b.x0, b.y0 }, { b.x1, b.y1 } }
+    })
+end
+
+-- Register individual animations
+for _, a in ipairs(animation_styles) do
+	a.enabled=true
+    hl.animation(a)
+end
 
 -- Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
@@ -236,36 +256,37 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-hl.bind(mainMod .. " + " .. "Q", hl.dsp.exec_cmd("kitty"))
-hl.bind(mainMod .. " + " .. "W", hl.dsp.exec_cmd("brave-beta"))
-hl.bind(mainMod .. " + " .. "E", hl.dsp.exec_cmd("kitty yazi"))
-hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("wofi"))
-hl.bind(mainMod .. " + " .. "T", hl.dsp.exec_cmd("rofi -show run"))
-hl.bind(mainMod .. " + " .. "S", hl.dsp.exec_cmd("steam --enable-features=UseOzonePlatform --ozone-platform-wayland"))
+hl.bind(mainMod.."+Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod.."+W", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod.."+E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod.."+R", hl.dsp.exec_cmd(wofiMenu))
+hl.bind(mainMod.."+T", hl.dsp.exec_cmd(rofiMenu))
+hl.bind(mainMod.."+S", hl.dsp.exec_cmd("steam --enable-features=UseOzonePlatform --ozone-platform-wayland"))
 
-hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo()) -- dwindle
-hl.bind(mainMod .. " + " .. "O", hl.dsp.layout("togglesplit")) -- dwindle
+hl.bind(mainMod.."+P", hl.dsp.window.pseudo()) -- dwindle
+hl.bind(mainMod.."+O", hl.dsp.layout("togglesplit")) -- dwindle
 
-hl.bind(mainMod .. " + " .. "C", hl.dsp.window.close())
-hl.bind(mainMod .. " + " .. "B", hl.dsp.window.float())
+hl.bind(mainMod.."+C", hl.dsp.window.close())
+hl.bind(mainMod.."+B", hl.dsp.window.float())
 
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "ESCAPE", hl.dsp.exit())
+hl.bind(mainMod.."+SHIFT+ESCAPE", hl.dsp.exit())
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + " .. "H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + " .. "L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + " .. "K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + " .. "J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod.."+H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod.."+L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod.."+K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod.."+J", hl.dsp.focus({ direction = "down" }))
 -- bind = Alt_L, TAB, cyclenext
 -- bind = Alt_L SHIFT, TAB, cyclenext, prev
 -- bind = $mainMod, Tab, exec, ~/.config/hypr/scripts/hypr-alt-tab.sh
 
 -- Clipboard
-hl.bind(mainMod .. " + " .. "V", hl.dsp.exec_cmd("copyq toggle"))
+hl.bind(mainMod.."+V", hl.dsp.exec_cmd("copyq toggle"))
 
 -- Notes
 -- Launches floating terminal with my script 
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "N", hl.dsp.exec_cmd("~/.local/bin/toggle_notes.sh"))
+local Notes = require("modules.notes")
+hl.bind(mainMod.."+SHIFT+N", function() Notes.toggle_notes() end)
 
 --=============--
 --= WORKSPACE =--
@@ -273,62 +294,39 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "N", hl.dsp.exec_cmd("~/.local/b
 
 
 -- Workspace Manager Script
-local home = os.getenv("HOME")
-local Workspace = require("workspaces")
+local Workspace = require("modules.workspaces")
 
 -- Generate binds automatically from 1 to 9
 for i = 0, 9 do
     local key = tostring(i)
     local ws = (i == 0) and 10 or i -- if 0 => then workspace is 10, else it's `i`
-	-- local ws_str = tostring(ws)
-
 	-- Switch workspaces with mainMod + [0-9]
-    -- hl.bind(mainMod .. "+" .. key, hl.dsp.exec_cmd(wksmgr .. " bring " .. ws_str))
-	hl.bind(
-        mainMod .. "+" .. key,
-        function()
-            Workspace.bring(ws)
-        end
-    )
-
+	hl.bind( mainMod.."+"..key, function() Workspace.bring(ws) end)
 	-- Move active window to a workspace with mainMod + SHIFT + [0-9]
-    -- hl.bind(mainMod .. "+SHIFT+" .. key, hl.dsp.window.move({ workspace = ws }))
-	hl.bind(
-        mainMod .. "+SHIFT+" .. key,
-        function()
-            Workspace.move_window(ws)
-        end
-    )
+	hl.bind( mainMod.."+SHIFT+".. key, function() Workspace.move_window(ws) end)
 end
-
 -- Switch workspaces to each other monitor
--- hl.bind(mainMod .. "+SHIFT+TAB", hl.dsp.exec_cmd(wksmgr .. " switch"))
-hl.bind(
-    mainMod .. "+SHIFT+TAB",
-    function()
-        Workspace.swap_monitors()
-    end
-)
+hl.bind( mainMod .. "+SHIFT+TAB", function() Workspace.swap_monitors() end)
 
 -- Example special workspace (scratchpad)
 -- hl.bind(mainMod, "S", hl.dsp.special_workspace.toggle({ name = "magic" }))
 -- hl.bind(mainMod .. " SHIFT", "S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod.."+TAB", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod.."+SHIFT+TAB", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod.."+mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod.."+mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag, { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod.."+mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod.."+mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Mover el workspace actual a un monitor específico
-hl.bind(mainMod .. " + CTRL + h", function() hl.dsp.workspace.move_to_monitor({ monitor = "current", workspace = "1" }) end)
-hl.bind(mainMod .. " + CTRL + l", function() hl.dsp.workspace.move_to_monitor({ monitor = "1" }) end)
+hl.bind(mainMod.."+CTRL+h", function() hl.dsp.workspace.move_to_monitor({ monitor = "current", workspace = "1" }) end)
+hl.bind(mainMod.."+CTRL+l", function() hl.dsp.workspace.move_to_monitor({ monitor = "1" }) end)
 
-hl.env("HYPRSHOT_DIR", "~/media/images/screenshots")
+hl.env("HYPRSHOT_DIR", home.."/media/images/screenshots")
 local screenshot_cmd = [[
     hyprshot --mode region --clipboard-only --raw \
     | satty \

@@ -1,5 +1,3 @@
--- ~/.config/hypr/workspaces.lua
-
 local Workspace = {}
 
 

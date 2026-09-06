@@ -2,21 +2,27 @@
 play = [
 	{
 		desc = "Play with mpv", 
-		run = 'mpv --player-operation-mode=pseudo-gui "$@"', 
+		run = 'mpv --player-operation-mode=pseudo-gui "%s"', 
 		orphan = true, 
 		for = "unix" 
 	},
+	{
+		desc = "Play directory (Skip GoPro junk)", 
+		run = 'mpv --player-operation-mode=pseudo-gui --image-display-duration=inf "%d1"',
+		orphan = true, 
+		for = "unix" 
+	}
 ]
 edit = [
 	{
 		desc = "Edit with nvim", 
-		run = 'nvim "$@"', 
+		run = 'nvim "%s"', 
 		block = true, 
 		for = "unix" 
 	},
 	{
 		desc = "Edit with gedit", 
-		run = 'gedit "$@"', 
+		run = 'gedit "%s"', 
 		orphan = true,
 		block = false, 
 		for = "unix" 
@@ -25,7 +31,7 @@ edit = [
 read_pdf = [
 	{
 		desc = "Read PDF (zathura)",
-		run = 'zathura "$@"',
+		run = 'zathura "%s"',
 		orphan = true, 
 		for = "unix"
 	}
@@ -33,21 +39,21 @@ read_pdf = [
 open_img = [
 	{
 		desc = "View with nomacs", 
-		run = 'nomacs "$@"', 
+		run = 'nomacs "%s"', 
 		orphan = true, 
 		block = false, 
 		for = "unix" 
 	},
 	{
 		desc = "View/edit with satty", 
-		run = 'satty --filename "$@"', 
+		run = 'satty --filename "%s"', 
 		orphan = true, 
 		block = false, 
 		for = "unix" 
 	},
 	{ 
 		desc = "Edit with GIMP", 
-		run = 'gimp "$@"', 
+		run = 'gimp "%s"', 
 		orphan = true, 
 		block = false, 
 		for = "unix" 
@@ -56,7 +62,7 @@ open_img = [
 launch = [
 	{ 
 		desc = "Launch GTK App", 
-		run = 'gtk-launch "$@"', 
+		run = 'gtk-launch "%s"', 
 		orphan = true, 
 		for = "unix" 
 	}
@@ -64,7 +70,7 @@ launch = [
 open = [
 	{
 		desc = "Open XDG open",
-		run = 'xdg-open "$@"',
+		run = 'xdg-open "%s"',
 		for = "unix"
 	},
 ]

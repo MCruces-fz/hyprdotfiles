@@ -46,7 +46,7 @@ local home = os.getenv("HOME")
 local terminal = "kitty"
 local fileManager = "kitty yazi" --show drun
 local wofiMenu = "wofi"
-local rofiMenu = "rofi -show run"
+local rofiMenu = "rofi -show drun"
 local browser = "brave-beta" --ozone-platform=x11 # Temporal
 
 

@@ -157,7 +157,7 @@ local animation_styles = {
 	{ leaf="border",				speed=5.39,	bezier="easeOutQuint" },
 	{ leaf="windows",				speed=4.79,	bezier="easeOutQuint" },
 	{ leaf="windowsIn",				speed=1.65,	bezier="lateBraking",		style="popin 60%" },
-	{ leaf="windowsOut",			speed=2.49,	bezier="easeOutQuint",		style="popin 10%" },
+	{ leaf="windowsOut",			speed=2.49,	bezier="easeOutQuint",		style="popin 55%" },
 	{ leaf="fadeIn",				speed=1.73,	bezier="almostLinear" },
 	{ leaf="fadeOut",				speed=1.46,	bezier="almostLinear" },
 	{ leaf="fade",					speed=3.03,	bezier="quick" },
@@ -443,21 +443,22 @@ hl.on("hyprland.start", function()
 	-- NETWORK
     hl.exec_cmd("nm-applet --inidicator")
     hl.exec_cmd("blueman-applet")
+
+	-- CLIPBOARD
+    hl.exec_cmd("copyq --start-server")
     
 	-- APPS
     hl.exec_cmd(terminal) 
     -- hl.exec_cmd(browser)
     hl.exec_cmd("waybar")
-    hl.exec_cmd("hyprctl wait && sleep 1 && protonvpn-app")
-    hl.exec_cmd("hyprctl wait && sleep 3 && hyprctl dispatch exec hyprpaper")
+    hl.exec_cmd("sleep 3 && protonvpn-app")
+    hl.exec_cmd("sleep 3 && hyprctl dispatch exec hyprpaper")
 end)
 
 --==========================================================--
 --= RECONEXIÓN / RECARGA (En cada guardado - Antiguo exec) =--
 --==========================================================--
 hl.on("config.reloaded", function()
-	-- CLIPBOARD
-    hl.exec_cmd("copyq --start-server &")
 	-- DARK THEME
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme Dracula") -- for GTK3 apps
     hl.exec_cmd("gsettings set org.gnome.desktop.wm.preferences theme Dracula")

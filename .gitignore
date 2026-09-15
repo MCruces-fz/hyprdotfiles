@@ -83,3 +83,8 @@ media/images/*
 !media/images/wallpaper/
 media/images/wallpaper/*
 !media/images/wallpaper/studio_ghibli_coffee_shop.jpg
+
+# ProtonVPN
+!.config/Proton
+.config/Proton/*
+!.config/Proton/VPN

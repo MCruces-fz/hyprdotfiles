@@ -1,0 +1,10 @@
+{
+    "tray_pinned_servers": [
+        "JP",
+        "ES",
+        "PT",
+        "US"
+    ],
+    "connect_at_app_startup": "ES",
+    "start_app_minimized": true
+}

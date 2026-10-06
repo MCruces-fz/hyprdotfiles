@@ -88,3 +88,6 @@ media/images/wallpaper/*
 !.config/Proton
 .config/Proton/*
 !.config/Proton/VPN
+
+# Rofi
+!.config/rofi

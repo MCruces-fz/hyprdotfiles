@@ -425,7 +425,9 @@ hl.env("XCURSOR_SIZE", 24)
 hl.env("HYPRCURSOR_SIZE", 24)
 hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
 
+hl.env("QT_QPA_PLATFORM", "wayland;wcb")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct") -- for Qt apps
+hl.env("QT5_STYLE_OVERRIDE", "kvantum") -- Force Kvantum in Qt5 if necessary
 -- XDG Menu Applications (install `pacman -S archlinux-xdg-menu`)
 hl.env("XDG_MENU_PREFIX", "arch-")
 
@@ -461,5 +463,10 @@ hl.on("config.reloaded", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme Dracula") -- for GTK3 apps
     hl.exec_cmd("gsettings set org.gnome.desktop.wm.preferences theme Dracula")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'") -- for GTK4 apps
+
+    -- exact name for icons in `/usr/share/icons/`
+	-- then open Qt6 Settings and select icon theme.
+	-- for KDE applications modify ~/.config/kdeglobals -> [Icons]
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'") 
 end)
 

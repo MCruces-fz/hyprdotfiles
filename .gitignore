@@ -91,3 +91,6 @@ media/images/wallpaper/*
 
 # Rofi
 !.config/rofi
+
+# KDE
+!.config/kdeglobals

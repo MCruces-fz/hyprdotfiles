@@ -263,7 +263,7 @@ hl.bind(mainMod.."+W", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod.."+E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod.."+R", hl.dsp.exec_cmd(wofiMenu))
 hl.bind(mainMod.."+T", hl.dsp.exec_cmd(rofiMenu))
-hl.bind(mainMod.."+S", hl.dsp.exec_cmd("steam --enable-features=UseOzonePlatform --ozone-platform-wayland"))
+-- hl.bind(mainMod.."+S", hl.dsp.exec_cmd("steam --enable-features=UseOzonePlatform --ozone-platform-wayland"))
 
 hl.bind(mainMod.."+P", hl.dsp.window.pseudo()) -- dwindle
 hl.bind(mainMod.."+O", hl.dsp.layout("togglesplit")) -- dwindle
@@ -315,18 +315,16 @@ hl.bind( mainMod .. "+SHIFT+TAB", function() Workspace.swap_monitors() end)
 -- hl.bind(mainMod .. " SHIFT", "S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod.."+TAB", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod.."+SHIFT+TAB", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod.."+mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod.."+mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod.."+CTRL+RIGHT", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod.."+CTRL+LEFT", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod.."+mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod.."+mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Mover el workspace actual a un monitor específico
-hl.bind(mainMod.."+CTRL+h", function() hl.dsp.workspace.move_to_monitor({ monitor = "current", workspace = "1" }) end)
-hl.bind(mainMod.."+CTRL+l", function() hl.dsp.workspace.move_to_monitor({ monitor = "1" }) end)
+hl.bind(mainMod.."+CTRL+h", function() hl.dsp.workspace.move({ monitor = "current", workspace = "1" }) end)
+hl.bind(mainMod.."+CTRL+l", function() hl.dsp.workspace.move({ monitor = "1" }) end)
 
 hl.env("HYPRSHOT_DIR", home.."/media/images/screenshots")
 local screenshot_cmd = [[

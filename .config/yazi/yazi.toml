@@ -46,7 +46,7 @@ open_img = [
 	},
 	{
 		desc = "View/edit with satty", 
-		run = 'satty --filename "%s"', 
+		run = 'satty --filename "%s" --output-filename "%s"', 
 		orphan = true, 
 		block = false, 
 		for = "unix" 

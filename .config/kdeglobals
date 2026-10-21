@@ -1,3 +1,6 @@
+[Icons]
+Theme=Buuf
+
 [KDE]
 ShowDeleteCommand=false
 
@@ -5,5 +8,5 @@ ShowDeleteCommand=false
 EnableRemoteFolderThumbnail=false
 MaximumRemoteSize=0
 
-[Icons]
-Theme=Buuf
+[General]
+TerminalApplication=kitty

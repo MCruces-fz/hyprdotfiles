@@ -72,7 +72,7 @@ function Workspace.move_window(id)
     )
     local workspace = hl.get_workspace(id)
     if not workspace then
-		hl.notification.create({text="Posiblemente no exista el workspace "..id, duration=5000})
+		hl.notification.create({text="Posiblemente no exista el workspace "..id, timeout=5000})
         -- return
 		workspace=id
     end
@@ -88,7 +88,7 @@ function Workspace.swap_monitors()
     local monitor1 = focused_monitor()
     local monitor2 = other_monitor()
     if not monitor1 or not monitor2 then
-		hl.notification.create({text="Sólo tienes un monitor, colega", duration=5000})
+		hl.notification.create({text="Sólo tienes un monitor, colega", timeout=5000})
         return
     end
     hl.dispatch(

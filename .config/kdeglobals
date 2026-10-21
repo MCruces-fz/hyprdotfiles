@@ -1,5 +1,8 @@
+[General]
+TerminalApplication=kitty
+
 [Icons]
-Theme=Buuf
+Theme=Gruvbox-Plus-Dark
 
 [KDE]
 ShowDeleteCommand=false
@@ -7,6 +10,3 @@ ShowDeleteCommand=false
 [PreviewSettings]
 EnableRemoteFolderThumbnail=false
 MaximumRemoteSize=0
-
-[General]
-TerminalApplication=kitty

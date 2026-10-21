@@ -467,6 +467,6 @@ hl.on("config.reloaded", function()
     -- exact name for icons in `/usr/share/icons/`
 	-- then open Qt6 Settings and select icon theme.
 	-- for KDE applications modify ~/.config/kdeglobals -> [Icons]
-    hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'") 
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Gruvbox-Plus-Dark'") 
 end)
 

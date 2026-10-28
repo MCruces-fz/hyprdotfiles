@@ -1,0 +1,94 @@
+* {
+	background-image: none;
+	box-shadow: none;
+	font-size: 20px;
+}
+
+@import "../waybar/themes/gruvbox.css";
+
+window {
+	background-color: rgba(80, 73, 69, 0.88); /*@scndry-bg;*/
+	/*background-color: rgba(--scndry-bg, 0.8);*/
+	/*background-color: rgb(from var(@scndry-bg) r g b / 50%);*/
+}
+
+button {
+    color: @main-fg;
+	background-color: @main-bg;
+
+	border: none;
+	outline-style: none;
+	box-shadow: none;
+	text-shadow: none;
+
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20%;
+
+	/* all together with corners*/
+    border-radius: 0;
+	border-width: 0px;
+	margin: 10px 0;
+	padding: 0;
+
+	/*animation: gradient_f 20s ease-in infinite;*/
+	/*transition: background-color 250ms ease,
+				background-size 250ms ease,
+				border-radius 250ms ease;*/
+	/*transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);*/
+}
+
+button#lock {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+button#logout {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+button:focus {
+	background-color: @wb-act-bg;
+	background-size: 30%;
+}
+
+button:hover {
+	background-color: @wb-hvr-bg;
+	background-size: 40%;
+	border-radius: 28px; /*active_radius*/
+	margin: -30px 0;
+
+	/*animation: gradient_f 20s ease-in infinite;*/
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:active {
+	background-color: @wb-act-bg;
+	/*outline-style: none;*/
+}
+
+
+#lock {
+    background-image: url("icons/lock.svg");
+}
+
+#logout {
+    background-image: url("icons/logout.svg");
+}
+
+#suspend {
+    background-image: url("icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("icons/hibernate.svg");
+}
+
+#shutdown {
+    background-image: url("icons/shutdown.svg");
+}
+
+#reboot {
+    background-image: url("icons/reboot.svg");
+}

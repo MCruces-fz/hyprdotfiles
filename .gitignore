@@ -54,6 +54,9 @@
 # Waybar
 !.config/waybar
 
+# Wlogout
+!.config/wlogout
+
 # Wofi
 !.config/wofi
 .config/wofi/*
@@ -74,6 +77,7 @@
 !.local/
 .local/*
 !.local/bin/
+.local/bin/crewai
 
 # Media
 !media/
@@ -94,3 +98,4 @@ media/images/wallpaper/*
 
 # KDE
 !.config/kdeglobals
+

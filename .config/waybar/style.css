@@ -7,10 +7,12 @@
 	}
 }
 
+@import "themes/gruvbox.css";
 
 /* Styles */
 
 /* Colors (gruvbox) */
+/*
 @define-color black	#282828;
 @define-color red	#cc241d;
 @define-color green	#98971a;
@@ -29,7 +31,7 @@
 @define-color white	#ebdbb2;
 @define-color bg2	#504945;
 
-
+@define-color main-bg rgba(40, 40, 40, 0.8784313725); 
 @define-color warning 	@bryellow;
 @define-color critical	@red;
 @define-color mode	@black;
@@ -45,6 +47,7 @@
 @define-color battery	@aqua;
 @define-color date	@black;
 @define-color time	@white;
+*/
 
 /* Reset all styles */
 * {

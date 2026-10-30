@@ -15,30 +15,30 @@
 @define-color brpurple	#d3869b;
 @define-color braqua	#8ec07c;
 @define-color white		#ebdbb2;
-@define-color scndry-bg	#504945;
-@define-color scndry-fg	@gray;
 
 /*main-bg is @black with transparency: #282828e0 */
-@define-color main-bg rgba(40, 40, 40, 0.8784313725); 
-@define-color main-fg @white;		/*#ebdbb2*/
-@define-color wb-act-bg @green;		/*#98971a*/
-@define-color wb-act-fg @brgreen;	/*#b8bb26*/
-@define-color wb-hvr-bg @aqua;		/*#689d6a*/
-@define-color wb-hvr-fg @braqua;	/*#8ec07c*/
+@define-color main-bg rgba(40, 40, 40, 0.88); 
+@define-color main-fg @white;       /*#ebdbb2*/
+@define-color scndry-bg	#504945;
+@define-color scndry-fg	@gray;      /*#a89984*/
+@define-color wb-act-bg @brpurple;  /*#d3869b*/
+@define-color wb-act-fg @black;     /*#282828*/
+@define-color wb-hvr-bg @purple;    /*#b16286*/
+@define-color wb-hvr-fg @white;     /*#ebdbb2*/
 
 
-@define-color warning 	@bryellow;	/*#fabd2f*/
-@define-color critical	@red;		/*#cc241d*/
-@define-color mode		@black;		/*#282828*/
-@define-color unfocused	@scndry-bg;	/*#504945*/
-@define-color focused	@braqua;	/**/
-@define-color inactive	@purple;	/**/
-@define-color sound		@brpurple;	/**/
-@define-color network	@purple;	/**/
-@define-color memory	@braqua;
-@define-color cpu		@green;
-@define-color temp		@brgreen;
-@define-color layout	@bryellow;
-@define-color battery	@aqua;
-@define-color date		@black;
-@define-color time		@white;
+@define-color warning 	@bryellow;  /*#fabd2f*/
+@define-color critical	@red;       /*#cc241d*/
+@define-color mode		@black;     /*#282828*/
+@define-color unfocused	@scndry-bg; /*#504945*/
+@define-color focused	@braqua;    /*#8ec07c*/
+@define-color inactive	@purple;    /*#b16286*/
+@define-color sound		@brpurple;  /*#d3869b*/
+@define-color network	@purple;    /*#b16286*/
+@define-color memory	@braqua;    /*#8ec07c*/
+@define-color cpu		@green;     /*#98971a*/
+@define-color temp		@brgreen;   /*#b8bb26*/
+@define-color layout	@bryellow;  /*#fabd2f*/
+@define-color battery	@aqua;      /*#689d6a*/
+@define-color date		@black;     /*#282828*/
+@define-color time		@white;     /*#ebdbb2*/

@@ -57,6 +57,9 @@
 # Wlogout
 !.config/wlogout
 
+# Wleave
+!.config/wleave
+
 # Wofi
 !.config/wofi
 .config/wofi/*

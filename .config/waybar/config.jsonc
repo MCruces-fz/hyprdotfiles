@@ -66,7 +66,8 @@
 		"format": " ⏻ ",
 		"tooltip": false,
 		//"on-click": "~/.config/waybar/actions/power/power_selector.sh"
-		"on-click": "wlogout --buttons-per-row 6 --margin-top 375 --margin-bottom 375"
+		//"on-click": "wlogout --buttons-per-row 6 --margin-top 375 --margin-bottom 375"
+		"on-click": "wleave"
 	},
 
 	"battery": {

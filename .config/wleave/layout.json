@@ -1,0 +1,51 @@
+{
+	"buttons-per-row": "6",
+	"column-spacing": "0px",
+	"no-version-info": true,
+	"margin-top": "375px",
+	"margin-bottom": "375px",
+    "buttons": [
+        {
+            "label": "lock",
+            "action": "hyprlock --quiet",
+            "text": "Lock",
+            "keybind": "l",
+            "icon": "/home/mcruces/.config/wleave/icons/lock.svg"
+        },
+        {
+            "label": "shutdown",
+            "action": "$HOME/.config/wlogout/poweroff.sh",
+            "text": "Shutdown",
+            "keybind": "s",
+            "icon": "/home/mcruces/.config/wleave/icons/shutdown.svg"
+        },
+        {
+            "label": "reboot",
+            "action": "systemctl reboot",
+            "text": "Reboot",
+            "keybind": "r",
+            "icon": "/home/mcruces/.config/wleave/icons/reboot.svg"
+        },
+        {
+            "label": "hibernate",
+            "action": "systemctl hibernate",
+            "text": "Hibernate",
+            "keybind": "h",
+            "icon": "/home/mcruces/.config/wleave/icons/hibernate.svg"
+        },
+        {
+            "label": "suspend",
+            "action": "systemctl suspend",
+            "text": "Suspend",
+            "keybind": "u",
+            "icon": "/home/mcruces/.config/wleave/icons/suspend.svg"
+        },
+        {
+            "label": "logout",
+            "action": "hyprctl dispatch 'hl.dsp.exit()'",
+            "text": "Logout",
+            "keybind": "e",
+            "icon": "/home/mcruces/.config/wleave/icons/logout.svg"
+        }
+    ]
+}

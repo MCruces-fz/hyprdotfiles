@@ -71,13 +71,13 @@ button:active {
 }
 
 button#lock {
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
+	border-top-left-radius: 28px;
+	border-bottom-left-radius: 28px;
 }
 
 button#logout {
-	border-top-right-radius: 20px;
-	border-bottom-right-radius: 20px;
+	border-top-right-radius: 28px;
+	border-bottom-right-radius: 28px;
 }
 
 /*

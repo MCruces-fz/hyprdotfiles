@@ -64,15 +64,16 @@ end
 
 function Workspace.move_window(id)
     -- Ensure workspace exists
-    hl.dispatch(
+    --[[ hl.dispatch(
         hl.dsp.global(
             "workspace",
             tostring(id)
         )
     )
+	]]
     local workspace = hl.get_workspace(id)
     if not workspace then
-		hl.notification.create({text="Posiblemente no exista el workspace "..id, timeout=5000})
+		-- hl.notification.create({text="Posiblemente no exista el workspace "..id, timeout=5000})
         -- return
 		workspace=id
     end

@@ -14,13 +14,13 @@
     text-shadow: none;
     font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands";
     font-size: 13px;
-    color: @white;
+    color: @main-fg;
 }
 
 /* Control center */
 .control-center {
     background-color: @main-bg;
-    color: @white;
+    color: @main-fg;
     border: 1px solid @scndry-bg;
     padding: 8px;
 }
@@ -394,4 +394,84 @@ tooltip label {
 .widget-label {
     color: @white;
 }
+
+
+/* ==========================================
+   Gruvbox - Refined visual details
+   ========================================== */
+
+/* Main floating panel */
+.control-center {
+    border-radius: 8px;
+    border: 1px solid @scndry-bg;
+    padding: 8px;
+}
+
+/* Notification cards */
+.notification {
+    border-radius: 6px;
+    border-left: 3px solid @unfocused;
+    margin: 5px;
+}
+
+/* Critical notifications */
+.notification.critical {
+    border-left: 3px solid @brred;
+    background-color: alpha(@critical, 0.18);
+}
+
+/* Normal notifications */
+.notification.normal,
+.notification.low {
+    border-left: 3px solid @scndry-bg;
+}
+
+/* Quick action buttons */
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    border-radius: 5px;
+    border: 1px solid @unfocused;
+}
+
+/* Active toggles */
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+    background-color: @focused;
+    color: @black;
+    border-color: @focused;
+}
+
+/* MPRIS */
+.widget-mpris .widget-mpris-player {
+    border-radius: 7px;
+    border: 1px solid @unfocused;
+}
+
+/* Volume and brightness */
+.widget-volume > box > button {
+    border-radius: 5px;
+}
+
+/* DND switch */
+.widget-dnd > switch {
+    border-radius: 12px;
+}
+
+.widget-dnd > switch slider {
+    border-radius: 10px;
+}
+
+/* Header */
+.widget-title > button {
+    border-radius: 5px;
+}
+
+/* Sliders */
+scale trough,
+scale trough highlight {
+    border-radius: 5px;
+}
+
+scale slider {
+    border-radius: 50%;
+}
+
 

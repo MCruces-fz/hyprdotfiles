@@ -1,11 +1,17 @@
 /* ==========================================================================
    SwayNC - Gruvbox Dark
-   Coordinated with waybar_style.css and themes/gruvbox.css
+   Coordinated with waybar/style.css and themes/gruvbox.css
    ========================================================================== */
 
 @import "/home/mcruces/.config/waybar/themes/gruvbox.css";
+/* Opaque bg for critical popup (75% @black + 25% @critical) */
+@define-color critical-bg #512725;
 
-/* Global reset and typography */
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
 * {
     border: none;
     border-radius: 0;
@@ -17,15 +23,46 @@
     color: @main-fg;
 }
 
-/* Control center */
 .control-center {
     background-color: @main-bg;
-    color: @main-fg;
     border: 1px solid @scndry-bg;
+    border-radius: 8px;
     padding: 8px;
 }
 
-/* Notification rows and cards */
+tooltip {
+    background-color: @black;
+    border: 1px solid @scndry-bg;
+    padding: 5px;
+}
+
+
+/* ==========================================================================
+   Notifications
+   ========================================================================== */
+
+/* Card */
+.notification {
+    background-color: @main-bg;
+    color: @main-fg;
+    border: 1px solid @scndry-bg;
+    border-left: 3px solid @scndry-bg;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 5px;
+}
+
+.notification.critical {
+    background-color: alpha(@critical, 0.81);
+    border: 1px solid @critical;
+    border-left: 3px solid @brred;
+}
+
+.notification.critical .summary {
+    color: @brred;
+}
+
+/* Card inside the control center */
 .control-center .notification-row {
     margin: 4px 0;
 }
@@ -35,74 +72,47 @@
     margin: 2px 0;
 }
 
-.control-center .notification-row .notification-background .notification {
+.control-center .notification {
     background-color: @scndry-bg;
-    color: @white;
     border: 1px solid @unfocused;
     padding: 4px;
 }
 
-.control-center .notification-row .notification-background .notification:hover {
+.control-center .notification:hover {
     background-color: alpha(@scndry-bg, 0.9);
 }
 
-.notification {
-    background-color: @main-bg;
-    color: @white;
-    border: 1px solid @scndry-bg;
-    padding: 8px;
-    margin: 5px;
+/* Critical card inside the control center (must out-rank the rules above) */
+.control-center .notification.critical {
+    background-color: alpha(@critical, 0.18);
+    border: 1px solid @critical;
+    border-left: 3px solid @brred;
 }
 
+/* Content */
 .notification-content {
     padding: 5px;
 }
 
 .summary {
-    color: @white;
-    font-size: 13px;
+    color: @main-fg;
     font-weight: bold;
 }
 
-.body {
+.body,
+.time {
     color: @gray;
+}
+
+.body {
     font-size: 12px;
 }
 
 .time {
-    color: @gray;
     font-size: 11px;
 }
 
-/* Notification urgency */
-.notification.low,
-.notification.normal {
-    background-color: @main-bg;
-    border-color: @scndry-bg;
-}
-
-.notification.critical {
-    background-color: alpha(@critical, 0.22);
-    border: 1px solid @critical;
-}
-
-.notification.critical .summary {
-    color: @brred;
-}
-
-/* Notification action buttons */
-.notification-action > button {
-    background-color: @unfocused;
-    color: @white;
-    padding: 5px 10px;
-    margin: 4px;
-}
-
-.notification-action > button:hover {
-    background-color: @wb-hvr-bg;
-    color: @wb-hvr-fg;
-}
-
+/* Close button */
 .close-button {
     background-color: transparent;
     color: @gray;
@@ -111,20 +121,49 @@
 
 .close-button:hover {
     background-color: @critical;
-    color: @white;
+    color: @main-fg;
 }
 
-/* Notification groups */
+/* Groups */
 .notification-group-header,
 .notification-group-icon {
     color: @gray;
     font-size: 12px;
 }
 
+
+/* ==========================================================================
+   Shared button style
+   ========================================================================== */
+
+.notification-action > button,
 .notification-group-collapse-button,
-.notification-group-close-all-button {
+.notification-group-close-all-button,
+.widget-buttons-grid > flowbox > flowboxchild > button,
+.widget-volume > box > button {
     background-color: @unfocused;
     color: @white;
+}
+
+.notification-action > button:hover,
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background-color: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button,
+.widget-volume > box > button,
+.widget-title > button {
+    border-radius: 5px;
+}
+
+.notification-action > button {
+    padding: 5px 10px;
+    margin: 4px;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
     padding: 4px 8px;
 }
 
@@ -138,83 +177,83 @@
     color: @white;
 }
 
-/* Scrollbars and sliders */
-scrollbar {
-    background-color: transparent;
-}
-
-scrollbar slider {
-    background-color: @gray;
-    min-width: 5px;
-    min-height: 5px;
-}
-
-scrollbar slider:hover {
-    background-color: @brpurple;
-}
-
-trough {
-    background-color: @unfocused;
-}
-
-trough highlight,
-scale trough highlight {
-    background-color: @brpurple;
-}
-
-scale trough {
-    background-color: @unfocused;
-    min-height: 6px;
-    min-width: 70px;
-    margin: 0 8px;
-}
-
-scale slider {
-    background-color: @white;
-    min-width: 12px;
-    min-height: 12px;
-    margin: -4px;
-}
-
-scale slider:hover {
-    background-color: @brpurple;
-}
-
-/* Tooltips */
-tooltip {
-    background-color: @black;
-    border: 1px solid @scndry-bg;
-    padding: 5px;
-}
-
-tooltip label {
-    color: @white;
-}
 
 /* ==========================================================================
    Widgets
    ========================================================================== */
 
+/* Title and clear-all button */
+.widget-title {
+    padding: 8px;
+}
+
+.widget-title > label {
+    color: @main-fg;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.widget-title > button {
+    background-color: @critical;
+    color: @white;
+    padding: 3px 8px;
+    transition: background-color 150ms ease;
+}
+
+.widget-title > button:hover {
+    background-color: @brred;
+    color: @black;
+}
+
+/* Generic label widget */
+.widget-label {
+    color: @white;
+}
+
+/* Do Not Disturb */
+.widget-dnd {
+    padding: 10px 8px;
+}
+
+.widget-dnd > label {
+    color: @white;
+    font-weight: bold;
+}
+
+.widget-dnd > switch {
+    background-color: @unfocused;
+    border: 1px solid @scndry-bg;
+    border-radius: 12px;
+    padding: 3px;
+}
+
+.widget-dnd > switch:checked {
+    background-color: @brpurple;
+}
+
+.widget-dnd > switch slider {
+    background-color: @white;
+    border-radius: 10px;
+    min-width: 18px;
+    min-height: 18px;
+}
+
+.widget-dnd > switch:checked slider {
+    background-color: @black;
+}
+
 /* Quick settings buttons grid */
 .widget-buttons-grid {
     padding: 8px;
-    margin: 0;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
-    background-color: @unfocused;
-    color: @white;
-    border: 1px solid @scndry-bg;
+    border: 1px solid @unfocused;
     min-width: 60px;
     min-height: 30px;
     padding: 7px;
     margin: 3px;
     transition: background-color 150ms ease;
-}
-
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
-    background-color: @wb-hvr-bg;
-    color: @wb-hvr-fg;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
@@ -225,7 +264,6 @@ tooltip label {
 
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover {
     background-color: @brgreen;
-    color: @black;
 }
 
 /* MPRIS media player */
@@ -233,36 +271,37 @@ tooltip label {
     margin: 4px 0;
 }
 
-.widget-mpris .widget-mpris-player {
+.widget-mpris-player {
     background-color: @scndry-bg;
     border: 1px solid @unfocused;
+    border-radius: 7px;
     padding: 10px;
     margin: 5px 0;
 }
 
-.widget-mpris .widget-mpris-player .widget-mpris-album-art {
+.widget-mpris-album-art {
     border: 1px solid @unfocused;
 }
 
-.widget-mpris .widget-mpris-player .widget-mpris-title {
+.widget-mpris-title {
     color: @brpurple;
     font-size: 14px;
     font-weight: bold;
     margin: 0 6px 5px;
 }
 
-.widget-mpris .widget-mpris-player .widget-mpris-subtitle {
+.widget-mpris-subtitle {
     color: @gray;
     font-size: 12px;
 }
 
-.widget-mpris .widget-mpris-player > box > button {
+.widget-mpris-player > box > button {
     background-color: transparent;
     color: @white;
     padding: 5px;
 }
 
-.widget-mpris .widget-mpris-player > box > button:hover {
+.widget-mpris-player > box > button:hover {
     background-color: @wb-hvr-bg;
     color: @wb-hvr-fg;
 }
@@ -281,24 +320,12 @@ tooltip label {
     margin: 0;
 }
 
-.widget-mpris .widget-mpris-player button:first-child,
-.widget-mpris .widget-mpris-player button:last-child {
-    opacity: 0;
-    min-width: 0;
-    min-height: 0;
-    padding: 0;
-    margin: 0;
-}
-
 /* Volume */
 .widget-volume {
     padding: 7px 8px;
-    margin: 0;
 }
 
 .widget-volume > box > button {
-    background-color: @unfocused;
-    color: @white;
     padding: 4px 8px;
 }
 
@@ -318,13 +345,8 @@ tooltip label {
     margin: 4px 8px 8px;
 }
 
-/* Backlight */
-.widget-backlight {
-    padding: 5px 8px;
-    margin: 0;
-}
-
-/* Inhibitors */
+/* Backlight and inhibitors */
+.widget-backlight,
 .widget-inhibitors {
     padding: 5px 8px;
 }
@@ -333,145 +355,47 @@ tooltip label {
     color: @gray;
 }
 
-/* Do Not Disturb */
-.widget-dnd {
-    padding: 10px 8px;
-    margin: 0;
+
+/* ==========================================================================
+   Scrollbars and sliders
+   ========================================================================== */
+
+scrollbar {
+    background-color: transparent;
 }
 
-.widget-dnd > label {
-    color: @white;
-    font-weight: bold;
+scrollbar slider {
+    background-color: @gray;
+    min-width: 5px;
+    min-height: 5px;
 }
 
-.widget-dnd > switch {
-    background-color: @unfocused;
-    border: 1px solid @scndry-bg;
-    padding: 3px;
-}
-
-.widget-dnd > switch:checked {
+scrollbar slider:hover,
+scale slider:hover {
     background-color: @brpurple;
 }
 
-.widget-dnd > switch slider {
-    background-color: @white;
-    min-width: 18px;
-    min-height: 18px;
+trough {
+    background-color: @unfocused;
 }
 
-.widget-dnd > switch:checked slider {
-    background-color: @black;
-}
-
-/* Notifications title and clear-all button */
-.widget-title {
-    padding: 8px;
-    margin: 0;
-}
-
-.widget-title > label {
-    color: @white;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.widget-title > button {
-    background-color: @critical;
-    color: @white;
-    padding: 3px 8px;
-    margin: 0;
-    transition: background-color 150ms ease;
-}
-
-.widget-title > button:hover {
-    background-color: @brred;
-    color: @black;
-}
-
-/* Empty notification state, where supported by the installed SwayNC version */
-.widget-title label,
-.widget-label {
-    color: @white;
-}
-
-
-/* ==========================================
-   Gruvbox - Refined visual details
-   ========================================== */
-
-/* Main floating panel */
-.control-center {
-    border-radius: 8px;
-    border: 1px solid @scndry-bg;
-    padding: 8px;
-}
-
-/* Notification cards */
-.notification {
-    border-radius: 6px;
-    border-left: 3px solid @unfocused;
-    margin: 5px;
-}
-
-/* Critical notifications */
-.notification.critical {
-    border-left: 3px solid @brred;
-    background-color: alpha(@critical, 0.18);
-}
-
-/* Normal notifications */
-.notification.normal,
-.notification.low {
-    border-left: 3px solid @scndry-bg;
-}
-
-/* Quick action buttons */
-.widget-buttons-grid > flowbox > flowboxchild > button {
+scale trough {
     border-radius: 5px;
-    border: 1px solid @unfocused;
+    min-height: 6px;
+    min-width: 70px;
+    margin: 0 8px;
 }
 
-/* Active toggles */
-.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
-    background-color: @focused;
-    color: @black;
-    border-color: @focused;
-}
-
-/* MPRIS */
-.widget-mpris .widget-mpris-player {
-    border-radius: 7px;
-    border: 1px solid @unfocused;
-}
-
-/* Volume and brightness */
-.widget-volume > box > button {
-    border-radius: 5px;
-}
-
-/* DND switch */
-.widget-dnd > switch {
-    border-radius: 12px;
-}
-
-.widget-dnd > switch slider {
-    border-radius: 10px;
-}
-
-/* Header */
-.widget-title > button {
-    border-radius: 5px;
-}
-
-/* Sliders */
-scale trough,
 scale trough highlight {
     border-radius: 5px;
+    background-color: @brpurple;
 }
+
 
 scale slider {
+    background-color: @white;
     border-radius: 50%;
+    min-width: 12px;
+    min-height: 12px;
+    margin: -4px;
 }
-
-

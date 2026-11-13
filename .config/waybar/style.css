@@ -25,7 +25,7 @@
 
 /* The whole bar */
 #waybar {
-	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
+	background: @main-bg;
 	color: @white;
 	font-family: JetBrains Mono, Siji;
 	font-size: 10pt;

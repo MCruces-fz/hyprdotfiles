@@ -5,8 +5,7 @@
 
 @import "/home/mcruces/.config/waybar/themes/gruvbox.css";
 /* Opaque bg for critical popup (75% @black + 25% @critical) */
-@define-color critical-bg #512725;
-
+@define-color critical-bg mix(@black, @critical, 0.25);
 
 /* ==========================================================================
    Base
@@ -21,6 +20,11 @@
     font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands";
     font-size: 13px;
     color: @main-fg;
+}
+
+button label,
+button image {
+    color: inherit;
 }
 
 .control-center {
@@ -42,81 +46,96 @@ tooltip {
    ========================================================================== */
 
 /* Card */
+
+.notification-row,
+.notification-background {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
 .notification {
-    background-color: @main-bg;
-    color: @main-fg;
-    border: 1px solid @scndry-bg;
-    border-left: 3px solid @scndry-bg;
     border-radius: 6px;
     padding: 8px;
     margin: 5px;
 }
 
-.notification.critical {
-    background-color: alpha(@critical, 0.81);
-    border: 1px solid @critical;
-    border-left: 3px solid @brred;
-}
-
-.notification.critical .summary {
-    color: @brred;
-}
-
-/* Card inside the control center */
-.control-center .notification-row {
-    margin: 4px 0;
-}
-
-.control-center .notification-row .notification-background {
-    background: transparent;
-    margin: 2px 0;
-}
-
-.control-center .notification {
-    background-color: @scndry-bg;
-    border: 1px solid @unfocused;
-    padding: 4px;
-}
-
-.control-center .notification:hover {
-    background-color: alpha(@scndry-bg, 0.9);
-}
-
-/* Critical card inside the control center (must out-rank the rules above) */
-.control-center .notification.critical {
-    background-color: alpha(@critical, 0.18);
-    border: 1px solid @critical;
-    border-left: 3px solid @brred;
-}
-
-/* Content */
 .notification-content {
     padding: 5px;
 }
 
-.summary {
-    color: @main-fg;
-    font-weight: bold;
+.summary { font-weight: bold; }
+.body { font-size: 12px; }
+.time { font-size: 11px; }
+
+/* ---- Popups (esquina de la pantalla): OPACOS ---- */
+.floating-notifications .notification {
+    background-color: @black;
+    border: 1px solid @scndry-bg;
 }
 
-.body,
-.time {
+.floating-notifications .summary { color: @main-fg; }
+.floating-notifications .body,
+.floating-notifications .time    { color: @gray; }
+
+/* low: apagada, gris */
+.floating-notifications .notification.low {
+	box-shadow: inset 3px 0 0 @brgray;
+}
+.floating-notifications .notification.low .summary {
     color: @gray;
 }
 
-.body {
-    font-size: 12px;
+/* normal: acento púrpura (el mismo de tu switch y tus sliders) */
+.floating-notifications .notification.normal {
+	box-shadow: inset 3px 0 0 @brpurple;
 }
 
-.time {
-    font-size: 11px;
+/* critical: fondo rojizo oscuro, borde rojo, todo el texto claro */
+.floating-notifications .notification.critical {
+    background-color: @critical-bg;
+    border: 2px solid @critical;
+	box-shadow: inset 4px 0 0 @critical;
 }
+.floating-notifications .notification.critical .summary,
+.floating-notifications .notification.critical .body,
+.floating-notifications .notification.critical .time,
+.floating-notifications .notification.critical .close-button {
+    color: @main-fg;
+}
+
+.floating-notifications .notification.critical .notification-action > button {
+    background-color: @main-fg;
+}
+
+/* ---- Control center: MÁS TRANSPARENTES ---- */
+.control-center .notification {
+    background-color: alpha(@scndry-bg, 0.5);
+    border: 1px solid @scndry-bg;
+}
+.control-center .notification:hover {
+    background-color: alpha(@scndry-bg, 0.75);
+}
+
+.control-center .summary { color: @main-fg; }
+.control-center .body,
+.control-center .time    { color: alpha(@main-fg, 0.8); }
+
+.control-center .notification.low      { border-left: 3px solid @brgray; }
+.control-center .notification.normal   { border-left: 3px solid @brpurple; }
+.control-center .notification.critical {
+    background-color: alpha(@critical, 0.25);
+    border: 1px solid @critical;
+    border-left: 3px solid @brred;
+}
+
 
 /* Close button */
 .close-button {
     background-color: transparent;
     color: @gray;
     padding: 3px;
+	border-radius: 3px;
 }
 
 .close-button:hover {
@@ -140,13 +159,15 @@ tooltip {
 .notification-group-collapse-button,
 .notification-group-close-all-button,
 .widget-buttons-grid > flowbox > flowboxchild > button,
-.widget-volume > box > button {
+.widget-volume > box > button,
+.widget-title > button {
     background-color: @unfocused;
-    color: @white;
+    color: @main-fg;
 }
 
 .notification-action > button:hover,
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+.widget-buttons-grid > flowbox > flowboxchild > button:hover,
+.widget-volume > box > button:hover {
     background-color: @wb-hvr-bg;
     color: @wb-hvr-fg;
 }
@@ -169,12 +190,12 @@ tooltip {
 
 .notification-group-collapse-button:hover {
     background-color: @focused;
-    color: @black;
+    color: @main-fg;
 }
 
 .notification-group-close-all-button:hover {
     background-color: @critical;
-    color: @white;
+    color: @main-fg;
 }
 
 
@@ -188,26 +209,18 @@ tooltip {
 }
 
 .widget-title > label {
-    color: @main-fg;
     font-size: 14px;
     font-weight: bold;
 }
 
 .widget-title > button {
-    background-color: @critical;
-    color: @white;
     padding: 3px 8px;
     transition: background-color 150ms ease;
 }
 
 .widget-title > button:hover {
-    background-color: @brred;
-    color: @black;
-}
-
-/* Generic label widget */
-.widget-label {
-    color: @white;
+    background-color: @critical;
+    color: @main-fg;
 }
 
 /* Do Not Disturb */
@@ -216,7 +229,6 @@ tooltip {
 }
 
 .widget-dnd > label {
-    color: @white;
     font-weight: bold;
 }
 
@@ -232,7 +244,7 @@ tooltip {
 }
 
 .widget-dnd > switch slider {
-    background-color: @white;
+    background-color: @main-fg;
     border-radius: 10px;
     min-width: 18px;
     min-height: 18px;
@@ -272,8 +284,8 @@ tooltip {
 }
 
 .widget-mpris-player {
-    background-color: @scndry-bg;
-    border: 1px solid @unfocused;
+    background-color: alpha(@scndry-bg, 0.5);
+    border: 1px solid @scndry-bg;
     border-radius: 7px;
     padding: 10px;
     margin: 5px 0;
@@ -297,7 +309,7 @@ tooltip {
 
 .widget-mpris-player > box > button {
     background-color: transparent;
-    color: @white;
+    color: @main-fg;
     padding: 5px;
 }
 
@@ -329,18 +341,14 @@ tooltip {
     padding: 4px 8px;
 }
 
-.widget-volume > box > button:hover {
-    background-color: @sound;
-    color: @black;
-}
-
 .widget-volume > box > button:active {
     background-color: @brpurple;
     color: @black;
 }
 
 .per-app-volume {
-    background-color: @main-bg;
+    background-color: alpha(@scndry-bg, 0.25);
+	border-radius: 8px;
     padding: 5px 8px;
     margin: 4px 8px 8px;
 }
@@ -393,7 +401,7 @@ scale trough highlight {
 
 
 scale slider {
-    background-color: @white;
+    background-color: @main-fg;
     border-radius: 50%;
     min-width: 12px;
     min-height: 12px;

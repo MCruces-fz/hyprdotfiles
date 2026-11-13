@@ -188,6 +188,13 @@ for _, a in ipairs(animation_styles) do
     hl.animation(a)
 end
 
+-- SwayNC appears from right corner
+hl.layer_rule({
+    name  = "swaync-control-center-anim",
+    match = { namespace = "swaync-control-center" },
+    animation = "slide right",
+})
+
 -- Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.

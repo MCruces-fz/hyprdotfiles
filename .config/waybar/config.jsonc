@@ -33,9 +33,9 @@
 
 		"custom/arrow4",
 		"battery",
+		"hyprland/language",
 
 		"custom/arrow3",
-		// "hyprland/language",
 		"custom/notification",
 
 		"custom/arrow2",
@@ -103,13 +103,13 @@
 	"clock#date": {
 		"interval": 20,
 		"format": "{:%e %b %Y}",
-		"tooltip": false,
+		"tooltip": true,
 		"tooltip-format": "{:%e %B %Y}"
 	},
 
 	"cpu": {
 		"interval": 5,
-		"tooltip": false,
+		"tooltip": true,
 		"format": " {usage}%",
 		"format-alt": " {load}",
 		"states": {
@@ -119,24 +119,24 @@
 	},
 
 	"hyprland/language": {
-		"format": " {}",
+		"format": " {shortDescription}-{short}",
 		"min-length": 5,
 		"on-click": "hyprctl switchxkblayout device next",
-		"tooltip": false
+		"tooltip": true
 	},
 
 	"custom/notification": {
-		"tooltip": false,
+		"tooltip": true,
 		"format": "{icon}",
 		"format-icons": { // using gruvbox red -> #fb4934
 			"notification": "<span foreground='#fb4934'><sup></sup></span>",
-			"none": "",
+			"none": " ",
 			"dnd-notification": "<span foreground='#fb4934'><sup></sup></span>",
-			"dnd-none": "",
+			"dnd-none": " ",
 			"inhibited-notification": "<span foreground='#fb4934'><sup></sup></span>",
-			"inhibited-none": "",
+			"inhibited-none": " ",
 			"dnd-inhibited-notification": "<span foreground='#fb4934'><sup></sup></span>",
-			"dnd-inhibited-none": ""
+			"dnd-inhibited-none": " "
 		},
 		"return-type": "json",
 		"exec-if": "which swaync-client",
@@ -148,21 +148,23 @@
 
 	"memory": {
 		"interval": 5,
-		"format": " {used:0.1f}G/{total:0.1f}G",
+		"format": " {used:0.1f}GiB",
+		"tooltip-format": "Used {used:0.1f}/{total:0.1f}GiB  ",
 		"states": {
 			"warning": 70,
 			"critical": 90
 		},
-		"tooltip": false
+		"tooltip": true
 	},
 
 	"network": {
 		"interval": 5,
+		"format": "󰈀 {ifname}",
+		"format-alt": " {bandwidthUpBits}  {bandwidthDownBits} 󰩠 {ipaddr}",
 		"format-wifi": " {essid} ({signalStrength}%)",
 		"format-ethernet": "󰈀 {ifname}",
 		"format-disconnected": "󰟦 No connection  ",
-		"format-alt": "󰩠 {ipaddr}/{cidr}",
-		"tooltip": false
+		"tooltip": true
 	},
 
 	// https://man.archlinux.org/man/extra/waybar/waybar-hyprland-window.5.en
@@ -261,9 +263,11 @@
 	// },
 
 	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
 		"critical-threshold": 90,
 		"interval": 5,
 		"format": "{icon} {temperatureC}°",
+		"tooltip-format": "{icon} {temperatureC}° / {temperatureF}F / {temperatureK}K",
 		"format-icons": [
 			"",
 			"",
@@ -271,7 +275,7 @@
 			"",
 			""
 		],
-		"tooltip": false
+		"tooltip": true
 	},
 
 	"tray": {

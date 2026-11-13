@@ -18,7 +18,7 @@
 	padding: 0;
 	box-shadow: none;
 	text-shadow: none;
-	icon-shadow: none;
+	-gtk-icon-shadow: none;
 	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands";
 	font-size: 13px;
 }
@@ -139,8 +139,8 @@
 }
 
 #language {
-	background: @layout;
-	color: @black;
+	background: @battery;
+	color: @white;
 }
 
 #custom-notification {

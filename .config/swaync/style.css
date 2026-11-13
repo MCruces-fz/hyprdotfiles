@@ -106,6 +106,12 @@ tooltip {
 
 .floating-notifications .notification.critical .notification-action > button {
     background-color: @main-fg;
+	color: @black;
+}
+
+.floating-notifications .notification.critical .notification-action > button:hover {
+    background-color: @wb-hvr-bg;
+	color: @wb-hvr-fg;
 }
 
 /* ---- Control center: MÁS TRANSPARENTES ---- */
@@ -172,6 +178,8 @@ tooltip {
     color: @wb-hvr-fg;
 }
 
+.notification-group-collapse-button,
+.notification-group-close-all-button,
 .widget-buttons-grid > flowbox > flowboxchild > button,
 .widget-volume > box > button,
 .widget-title > button {
@@ -183,14 +191,13 @@ tooltip {
     margin: 4px;
 }
 
-.notification-group-collapse-button,
-.notification-group-close-all-button {
-    padding: 4px 8px;
+.notification-group {
+	border-radius: 8px;
 }
 
 .notification-group-collapse-button:hover {
     background-color: @focused;
-    color: @main-fg;
+    color: @black;
 }
 
 .notification-group-close-all-button:hover {
@@ -287,8 +294,11 @@ tooltip {
     background-color: alpha(@scndry-bg, 0.5);
     border: 1px solid @scndry-bg;
     border-radius: 7px;
-    padding: 10px;
     margin: 5px 0;
+}
+
+.widget-mpris-player .mpris-background {
+	filter: blur(10px);
 }
 
 .widget-mpris-album-art {
@@ -299,7 +309,6 @@ tooltip {
     color: @brpurple;
     font-size: 14px;
     font-weight: bold;
-    margin: 0 6px 5px;
 }
 
 .widget-mpris-subtitle {
@@ -318,18 +327,22 @@ tooltip {
     color: @wb-hvr-fg;
 }
 
-.widget-mpris > box > button:hover {
+/* Botones laterales para cambiar de reproductor */
+.widget-mpris > box > button {
     background-color: @unfocused;
+    color: @main-fg;
+    border-radius: 5px;
+    margin: 70px 4px;
+    padding: 0 0px;
 }
 
-/* Hide redundant outer MPRIS navigation buttons */
-.widget-mpris button:first-child,
-.widget-mpris button:last-child {
-    opacity: 0;
-    min-width: 0;
-    min-height: 0;
-    padding: 0;
-    margin: 0;
+.widget-mpris > box > button:hover {
+    background-color: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+}
+
+.widget-mpris > box > button:disabled {
+    opacity: 0.85;
 }
 
 /* Volume */

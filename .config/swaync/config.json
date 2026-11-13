@@ -57,7 +57,7 @@
 	"widget-config": {
 		"mpris": {
 			"autohide": true,
-            "image-size": 90,
+            "image-size": 130,
             "image-radius": 6
 		},
         "volume": {

@@ -56,12 +56,23 @@ tooltip {
 
 .notification {
     border-radius: 6px;
-    padding: 8px;
+    padding: 0;
     margin: 5px;
 }
 
 .notification-content {
-    padding: 5px;
+    padding: 13px;
+}
+
+.notification-default-action {
+	background-color: transparent;
+	border-radius: 5px;
+	padding: 0;
+	margin: 0;
+}
+
+.notification-default-action:hover {
+	background-color: alpha(@main-fg, 0.07);
 }
 
 .summary { font-weight: bold; }
@@ -110,7 +121,8 @@ tooltip {
 }
 
 .floating-notifications .notification.critical .notification-action > button:hover {
-    background-color: @wb-hvr-bg;
+    /*background-color: @wb-hvr-bg;*/
+    background-color: @critical;
 	color: @wb-hvr-fg;
 }
 
@@ -118,9 +130,6 @@ tooltip {
 .control-center .notification {
     background-color: alpha(@scndry-bg, 0.5);
     border: 1px solid @scndry-bg;
-}
-.control-center .notification:hover {
-    background-color: alpha(@scndry-bg, 0.75);
 }
 
 .control-center .summary { color: @main-fg; }

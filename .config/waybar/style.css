@@ -7,7 +7,7 @@
 	}
 }
 
-@import "themes/gruvbox.css";
+@import url("/home/mcruces/.config/waybar/themes/gruvbox.css");
 
 /* Reset all styles */
 * {
@@ -18,14 +18,14 @@
 	padding: 0;
 	box-shadow: none;
 	text-shadow: none;
-	icon-shadow: none;
+	-gtk-icon-shadow: none;
 	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands";
 	font-size: 13px;
 }
 
 /* The whole bar */
 #waybar {
-	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
+	background: @main-bg;
 	color: @white;
 	font-family: JetBrains Mono, Siji;
 	font-size: 10pt;
@@ -139,8 +139,8 @@
 }
 
 #language {
-	background: @layout;
-	color: @black;
+	background: @battery;
+	color: @white;
 }
 
 #custom-notification {

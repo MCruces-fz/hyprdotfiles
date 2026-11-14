@@ -16,8 +16,6 @@ alias ffuf='ffuf -c'
 alias dd='dd status=progress'
 # alias paru='paru --fm yazi'
 
-alias dotager="/usr/bin/env git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
 export HISTCONTROL=ignoredups:erasedups
 
 export EDITOR=nvim
@@ -42,3 +40,12 @@ unset _my_paths
 
 # To use fnm as node version manager
 eval "$(fnm env --use-on-cd --shell bash)"
+
+
+if [ -f ~/.fooshrc ]; then
+    . ~/.fooshrc
+else
+	alias dotager="/usr/bin/env git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+    echo "Variables and functions not exported";
+fi
+

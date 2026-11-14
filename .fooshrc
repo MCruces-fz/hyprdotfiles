@@ -1,0 +1,54 @@
+#!/bin/bash
+
+dotager() {
+    case "$1" in
+        listall)
+            shift
+            dotager ls-tree --full-tree -r --name-only HEAD "$@"
+            ;;
+        listtree)
+            shift
+            if hash treeify 2>/dev/null; then
+                dotager ls-tree --full-tree -r --name-only HEAD "$@" | treeify
+            else
+                dotager listall
+            fi
+            ;;
+        lgg)
+            dotager log \
+                --graph \
+                --abbrev-commit \
+                --color \
+                --decorate \
+                --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' \
+                --all
+            ;;
+        lggg)
+            dotager log \
+                --graph \
+                --abbrev-commit \
+                --color \
+                --decorate \
+                --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' \
+                --all
+            ;;
+		setup)
+			dotager config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+			dotager config fetch.prune true
+			;;
+		brx)
+			dotager for-each-ref \
+				--format='%(if:equals=*)%(HEAD)%(then)%(color:bold cyan)* %(color:reset)%(else)  %(end)%(if)%(upstream)%(then)%(if:equals=[gone])%(upstream:track)%(then)%(color:brightblack)[GONE]   %(color:white)%(refname:short)%(color:brightblack) -> %(upstream:short)%(color:reset)%(else)%(color:green)[ACTIVE] %(color:white)%(refname:short)%(color:reset) -> %(color:cyan)%(upstream:short) %(color:yellow)%(upstream:track)%(color:reset)%(end)%(else)%(color:yellow)[LOCAL]  %(color:white)%(refname:short)%(color:brightblack) (no upstream)%(color:reset)%(end)' \
+				refs/heads/
+			;;
+		obrx)
+			dotager brx;
+			dotager for-each-ref \
+				--exclude='refs/remotes/origin/HEAD' \
+				--format='  %(color:magenta)[REMOTE] %(color:white)%(refname:short)%(color:reset)' \
+				refs/remotes/origin
+			;;
+        *)
+            /usr/bin/env git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@";;
+    esac
+}

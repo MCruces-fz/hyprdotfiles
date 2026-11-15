@@ -156,8 +156,8 @@ local animation_styles = {
 	{ leaf="global",				speed=10,	bezier="default" },
 	{ leaf="border",				speed=5.39,	bezier="easeOutQuint" },
 	{ leaf="windows",				speed=4.79,	bezier="easeOutQuint" },
-	{ leaf="windowsIn",				speed=1.65,	bezier="lateBraking",		style="popin 60%" },
-	{ leaf="windowsOut",			speed=2.49,	bezier="easeOutQuint",		style="popin 55%" },
+	{ leaf="windowsIn",				speed=4.1,	bezier="easeOutQuint",		style="popin 87%" },
+	{ leaf="windowsOut",			speed=1.8,	bezier="linear",			style="popin 87%" },
 	{ leaf="fadeIn",				speed=1.73,	bezier="almostLinear" },
 	{ leaf="fadeOut",				speed=1.46,	bezier="almostLinear" },
 	{ leaf="fade",					speed=3.03,	bezier="quick" },
@@ -166,11 +166,11 @@ local animation_styles = {
 	{ leaf="layersOut",				speed=1.5,	bezier="easeInOutCubic",	style="slide" },
 	{ leaf="fadeLayersIn",			speed=1.79,	bezier="almostLinear" },
 	{ leaf="fadeLayersOut",			speed=1.39,	bezier="almostLinear" },
-	{ leaf="workspaces",			speed=1.94,	bezier="almostLinear",		style="fade" },
-	{ leaf="workspacesIn",			speed=1.21,	bezier="almostLinear",		style="slide" },
-	{ leaf="workspacesOut",			speed=1.94,	bezier="almostLinear",		style="slide" },
-	{ leaf="specialWorkspaceIn",	speed=1.94,	bezier="easeInOutCubic",	style="slidevert top" },
-	{ leaf="specialWorkspaceOut",	speed=1.94,	bezier="easeOutQuint",		style="slidevert bottom" },
+	{ leaf="workspaces",			speed=3.5,	bezier="easeOutQuint",		style="slide" },
+	{ leaf="workspacesIn",			speed=3.5,	bezier="easeOutQuint",		style="slide" },
+	{ leaf="workspacesOut",			speed=3.5,	bezier="easeOutQuint",		style="slide" },
+	{ leaf="specialWorkspaceIn",	speed=3.5,	bezier="easeOutQuint",		style="slidevert top" },
+	{ leaf="specialWorkspaceOut",	speed=3.5,	bezier="easeOutQuint",		style="slidevert bottom" },
 	{ leaf="zoomFactor",			speed=7,	bezier="quick" },
 }
 
@@ -195,15 +195,9 @@ hl.layer_rule({
     animation = "slide right",
 })
 
--- Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- workspace = w[tv1], gapsout:0, gapsin:0
--- workspace = f[1], gapsout:0, gapsin:0
--- windowrule = bordersize 0, floating:0, onworkspace:w[tv1]
--- windowrule = rounding 0, floating:0, onworkspace:w[tv1]
--- windowrule = bordersize 0, floating:0, onworkspace:f[1]
--- windowrule = rounding 0, floating:0, onworkspace:f[1]
+-- Screenshots with fade animation (instead slide)
+hl.layer_rule({ name = "selection", match = { namespace = "selection" }, animation = "fade" })
+
 
 hl.config({
 	-- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more

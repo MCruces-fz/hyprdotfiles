@@ -439,22 +439,24 @@ hl.on("hyprland.start", function()
 	-- AUDIO
 	-- To show sinks: 
 	-- pactl list short sinks
-    hl.exec_cmd("pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo")
+	hl.exec_cmd("pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo")
 	
 	-- NETWORK
-    hl.exec_cmd("nm-applet --inidicator")
-    hl.exec_cmd("blueman-applet")
-
+	hl.exec_cmd("nm-applet --inidicator")
+	hl.exec_cmd("blueman-applet")
+	
 	-- CLIPBOARD
-    hl.exec_cmd("copyq --start-server")
-    
+	hl.exec_cmd("copyq --start-server")
+	
 	-- APPS
-    hl.exec_cmd(terminal) 
-    -- hl.exec_cmd(browser)
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("hypridle")
-    hl.exec_cmd("sleep 3 && protonvpn-app")
-    hl.exec_cmd("sleep 3 && hyprctl dispatch exec hyprpaper")
+	hl.exec_cmd(terminal) 
+	-- hl.exec_cmd(browser)
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("hypridle")
+	hl.exec_cmd("sleep 3 && protonvpn-app")
+	hl.exec_cmd("sleep 3 && hyprctl dispatch exec hyprpaper")
+	
+	hl.exec_cmd("wayland-pipewire-idle-inhibit")
 end)
 
 --==========================================================--

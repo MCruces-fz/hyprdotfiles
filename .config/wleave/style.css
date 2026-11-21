@@ -1,20 +1,18 @@
+@import url("/home/mcruces/.config/colors/gruvbox-dark.css");
+
 * {
 	background-image: none;
 	box-shadow: none;
 	font-size: 20px;
 }
 
-@import "../waybar/themes/gruvbox.css";
-
 window {
-	background-color: rgba(80, 73, 69, 0.88); /*@scndry-bg;*/
-	/*background-color: rgba(--scndry-bg, 0.8);*/
-	/*background-color: rgb(from var(@scndry-bg) r g b / 50%);*/
+	background-color: alpha(@surface, 0.88);
 }
 
 button {
-    color: @main-fg;
-	background-color: @main-bg;
+    color: @fg;
+	background-color: @bg-translucent;
 
 	border: none;
 	outline-style: none;
@@ -45,19 +43,19 @@ button:hover label.action-name {
 
 /* Equals pulseaudio */
 button:focus {
-	background-color: @wb-act-bg;
-	color: @wb-act-fg;
+	background-color: @accent;
+	color: @fg-on-accent;
 	background-size: 30%;
 }
 
 button:hover {
-	background-color: @wb-hvr-bg;
-	color: @wb-hvr-fg;
+	background-color: @accent-hover;
+	color: @fg;
 	background-size: 40%;
 
 	border-radius: 28px; /*active_radius*/
 
-	margin: -30px 0;
+	margin: -20px 0;
 
 	/*animation: gradient_f 20s ease-in infinite;*/
     transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
@@ -66,7 +64,7 @@ button:hover {
 
 button:active {
 	background-color: @wb-act-bg;
-	color: @wb-act-fg;
+	color: @fg-on-accent;
 	/*outline-style: none;*/
 }
 
@@ -79,29 +77,3 @@ button#logout {
 	border-top-right-radius: 28px;
 	border-bottom-right-radius: 28px;
 }
-
-/*
-#lock {
-    background-image: url("icons/lock.svg");
-}
-
-#logout {
-    background-image: url("icons/logout.svg");
-}
-
-#suspend {
-    background-image: url("icons/suspend.svg");
-}
-
-#hibernate {
-    background-image: url("icons/hibernate.svg");
-}
-
-#shutdown {
-    background-image: url("icons/shutdown.svg");
-}
-
-#reboot {
-    background-image: url("icons/reboot.svg");
-}
-*/

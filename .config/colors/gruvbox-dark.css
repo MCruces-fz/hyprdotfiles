@@ -1,5 +1,7 @@
 /* ── CAPA 1: paleta oficial morhetz/gruvbox (dark). Solo hex. ──
-   Las apps no deberían usar estos nombres directamente. */
+   Las apps no deberían usar estos nombres directamente. 
+Source: https://github.com/morhetz/gruvbox
+ */
 @define-color gb-bg0-hard #1d2021;
 @define-color gb-bg0      #282828;
 @define-color gb-bg0-soft #32302f;
@@ -49,25 +51,3 @@
 @define-color critical        @gb-red;
 @define-color critical-bright @gb-red-bright;
 @define-color critical-bg     mix(@gb-bg0, @gb-red, 0.25);
-
-/* ── ALIAS TEMPORALES: borra esta sección cuando hayas migrado swaync/wleave ──
-@define-color main-bg    @bg-translucent;
-@define-color main-fg    @fg;
-@define-color scndry-bg  @surface;
-@define-color scndry-fg  @fg-muted;
-@define-color unfocused  @surface;
-@define-color wb-act-bg  @accent;
-@define-color wb-act-fg  @fg-on-accent;
-@define-color wb-hvr-bg  @accent-hover;
-@define-color wb-hvr-fg  @fg;
-@define-color black      @gb-bg0;
-@define-color white      @gb-fg1;
-@define-color gray       @gb-fg4;
-@define-color brgray     @gb-gray;
-@define-color brpurple   @gb-purple-bright;
-@define-color brgreen    @gb-green-bright;
-@define-color brred      @gb-red-bright;
-@define-color braqua     @gb-aqua-bright;
-@define-color focused    @focus;
-@define-color red        @gb-red;
- */

@@ -136,4 +136,4 @@
 #custom-arrow7	{ font-size: 11pt; color: @mod-memory; background: @mod-network; }
 #custom-arrow8	{ font-size: 11pt; color: @mod-network; background: @mod-volume; }
 #custom-arrow9	{ font-size: 11pt; color: @mod-volume; background: transparent; }
-#custom-arrow10	{ font-size: 11pt; color: @unfocused; background: transparent; }
+#custom-arrow10	{ font-size: 11pt; color: @mod-workspace; background: transparent; }

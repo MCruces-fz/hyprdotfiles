@@ -75,8 +75,8 @@ local browser = "brave-beta" --ozone-platform=x11 # Temporal
 -- https://wiki.hypr.land/Configuring/Variables/#general
 hl.config({
     general = {
-        gaps_in = 3,
-        gaps_out = 5,
+        gaps_in = 5, -- between windows
+        gaps_out = 9, -- between windows and screen borders
         border_size = 3,
         --# COLORS
         -- https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
@@ -101,7 +101,7 @@ hl.config({
 -- https://wiki.hypr.land/Configuring/Variables/#decoration
 hl.config({
     decoration = {
-        rounding = 4,
+        rounding = 8,
         rounding_power = 8,
 
         -- Change transparency of focused and unfocused windows

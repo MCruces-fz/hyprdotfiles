@@ -1,13 +1,11 @@
-/* Keyframes */
+/*
+@import url("/home/mcruces/.config/waybar/themes/gruvbox.css");
+*/
+@import url("/home/mcruces/.config/waybar/modules.css");
 
 @keyframes blink-critical {
-	to {
-		/*color: @white;*/
-		background-color: @critical;
-	}
+	to { color: @fg; background-color: @critical; }
 }
-
-@import url("/home/mcruces/.config/waybar/themes/gruvbox.css");
 
 /* Reset all styles */
 * {
@@ -25,8 +23,8 @@
 
 /* The whole bar */
 #waybar {
-	background: @main-bg;
-	color: @white;
+	background: @bg-translucent;
+	color: @fg;
 	font-family: JetBrains Mono, Siji;
 	font-size: 10pt;
 	/*font-weight: bold;*/
@@ -70,42 +68,43 @@
 #cpu.warning,
 #temperature.warning,
 #battery.warning.discharging {
-	color: @warning;
+	color: @fg-on-accent;
+	background: @warning;
 }
 
 /* And now modules themselves in their respective order */
 
 /* Workspaces stuff */
 #workspaces button {
-	/*font-weight: bold;*/
+	color: @fg;
+	background: @mod-workspace;
 	padding-left: 2pt;
 	padding-right: 2pt;
-	color: @white;
-	background: @unfocused;
 }
 
-/* Inactive (on unfocused output) */
 #workspaces button.visible {
-	color: @white;
-	background: @inactive;
+	color: @fg;
+	background: @accent-hover;
 }
 
-/* Active (on focused output) */
 #workspaces button.focused {
-	color: @black;
-	background: @focused;
+	color: @bg;
+	background: @focus;
 }
 
-/* Contains an urgent window */
+#workspaces button.active {
+	color: @fg-on-accent;
+	background: @accent;
+}
+
 #workspaces button.urgent {
-	color: @black;
+	color: @fg-on-accent;
 	background: @warning;
 }
 
-/* Style when cursor is on the button */
 #workspaces button:hover {
-	background: @black;
-	color: @white;
+	background: @fg;
+	color: @bg;
 }
 
 #window {
@@ -113,121 +112,28 @@
 	margin-left: 35pt;
 }
 
-#pulseaudio {
-	background: @sound;
-	color: @black;
-}
+/* Modules */
+#pulseaudio	{ background: @mod-volume; color: @mod-fg; }
+#network	{ background: @mod-network; color: @mod-fg; }
+#memory		{ background: @mod-memory; color: @mod-fg; }
+#cpu 		{ background: @mod-cpu; color: @mod-fg; }
+#temperature { background: @mod-temp; color: @mod-fg; }
+#language	{ background: @mod-language; color: @mod-fg; }
+#battery	{ background: @mod-language; color: @mod-fg; }
+#custom-notification { background: @mod-notification; color: @fg; }
+#tray		{ background: @mod-date; }
+#clock.date	{ background: @mod-date; color: @fg; }
+#clock.time	{ background: @mod-time; color: @bg; }
+#custom-power { background: @mod-time; color: @critical; }
 
-#network {
-	background: @network;
-	color: @white;
-}
-
-#memory {
-	background: @memory;
-	color: @black;
-}
-
-#cpu {
-	background: @cpu;
-	color: @white;
-}
-
-#temperature {
-	background: @temp;
-	color: @black;
-}
-
-#language {
-	background: @battery;
-	color: @white;
-}
-
-#custom-notification {
-	background: @layout;
-	color: @black;
-}
-
-#battery {
-	background: @battery;
-	color: @white;
-}
-
-#tray {
-	background: @date;
-}
-
-#clock.date {
-	background: @date;
-	color: @white;
-}
-
-#clock.time {
-	background: @time;
-	color: @black;
-}
-
-#custom-power {
-	background: @time;
-	color: @red;
-}
-
-#custom-arrow1 {
-	font-size: 11pt;
-	color: @time;
-	background: @date;
-}
-
-#custom-arrow2 {
-	font-size: 11pt;
-	color: @date;
-	background: @layout;
-}
-
-#custom-arrow3 {
-	font-size: 11pt;
-	color: @layout;
-	background: @battery;
-}
-
-#custom-arrow4 {
-	font-size: 11pt;
-	color: @battery;
-	background: @temp;
-}
-
-#custom-arrow5 {
-	font-size: 11pt;
-	color: @temp;
-	background: @cpu;
-}
-
-#custom-arrow6 {
-	font-size: 11pt;
-	color: @cpu;
-	background: @memory;
-}
-
-#custom-arrow7 {
-	font-size: 11pt;
-	color: @memory;
-	background: @network;
-}
-
-#custom-arrow8 {
-	font-size: 11pt;
-	color: @network;
-	background: @sound;
-}
-
-#custom-arrow9 {
-	font-size: 11pt;
-	color: @sound;
-	background: transparent;
-}
-
-#custom-arrow10 {
-	font-size: 11pt;
-	color: @unfocused;
-	background: transparent;
-}
+/*Arrows: color -> right module; background -> left module*/
+#custom-arrow1	{ font-size: 11pt; color: @mod-time; background: @mod-date; }
+#custom-arrow2	{ font-size: 11pt; color: @mod-date; background: @mod-notification; }
+#custom-arrow3	{ font-size: 11pt; color: @mod-notification; background: @mod-language }
+#custom-arrow4	{ font-size: 11pt; color: @mod-language; background: @mod-temp; }
+#custom-arrow5	{ font-size: 11pt; color: @mod-temp; background: @mod-cpu; }
+#custom-arrow6	{ font-size: 11pt; color: @mod-cpu; background: @mod-memory; }
+#custom-arrow7	{ font-size: 11pt; color: @mod-memory; background: @mod-network; }
+#custom-arrow8	{ font-size: 11pt; color: @mod-network; background: @mod-volume; }
+#custom-arrow9	{ font-size: 11pt; color: @mod-volume; background: transparent; }
+#custom-arrow10	{ font-size: 11pt; color: @unfocused; background: transparent; }

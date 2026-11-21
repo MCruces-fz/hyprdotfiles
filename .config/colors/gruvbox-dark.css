@@ -1,0 +1,73 @@
+/* ── CAPA 1: paleta oficial morhetz/gruvbox (dark). Solo hex. ──
+   Las apps no deberían usar estos nombres directamente. */
+@define-color gb-bg0-hard #1d2021;
+@define-color gb-bg0      #282828;
+@define-color gb-bg0-soft #32302f;
+@define-color gb-bg1      #3c3836;
+@define-color gb-bg2      #504945;
+@define-color gb-bg3      #665c54;
+@define-color gb-bg4      #7c6f64;
+@define-color gb-gray     #928374;
+@define-color gb-fg4      #a89984;
+@define-color gb-fg3      #bdae93;
+@define-color gb-fg2      #d5c4a1;
+@define-color gb-fg1      #ebdbb2;
+@define-color gb-fg0      #fbf1c7;
+
+@define-color gb-red-bright    #fb4934;
+@define-color gb-green-bright  #b8bb26;
+@define-color gb-yellow-bright #fabd2f;
+@define-color gb-blue-bright   #83a598;
+@define-color gb-purple-bright #d3869b;
+@define-color gb-aqua-bright   #8ec07c;
+@define-color gb-orange-bright #fe8019;
+
+@define-color gb-red    #cc241d;
+@define-color gb-green  #98971a;
+@define-color gb-yellow #d79921;
+@define-color gb-blue   #458588;
+@define-color gb-purple #b16286;
+@define-color gb-aqua   #689d6a;
+@define-color gb-orange #d65d0e;
+
+/* ── CAPA 2: roles del sistema (esto es lo que usan las apps) ── */
+@define-color bg              @gb-bg0;
+@define-color bg-translucent  alpha(@gb-bg0, 0.88);   /* tu main-bg */
+@define-color surface         @gb-bg2;                /* scndry-bg / unfocused */
+@define-color border          @gb-bg2;
+@define-color fg              @gb-fg1;                /* main-fg */
+@define-color fg-muted        @gb-fg4;                /* scndry-fg */
+@define-color fg-subtle       @gb-gray;               /* brgray */
+@define-color fg-on-accent    @gb-bg0;                /* texto sobre fondos brillantes */
+
+@define-color accent          @gb-purple-bright;      /* wb-act-bg */
+@define-color accent-hover    @gb-purple;             /* wb-hvr-bg */
+@define-color focus           @gb-aqua-bright;        /* focused */
+
+@define-color success         @gb-green-bright;
+@define-color warning         @gb-yellow-bright;
+@define-color critical        @gb-red;
+@define-color critical-bright @gb-red-bright;
+@define-color critical-bg     mix(@gb-bg0, @gb-red, 0.25);
+
+/* ── ALIAS TEMPORALES: borra esta sección cuando hayas migrado swaync/wleave ──
+@define-color main-bg    @bg-translucent;
+@define-color main-fg    @fg;
+@define-color scndry-bg  @surface;
+@define-color scndry-fg  @fg-muted;
+@define-color unfocused  @surface;
+@define-color wb-act-bg  @accent;
+@define-color wb-act-fg  @fg-on-accent;
+@define-color wb-hvr-bg  @accent-hover;
+@define-color wb-hvr-fg  @fg;
+@define-color black      @gb-bg0;
+@define-color white      @gb-fg1;
+@define-color gray       @gb-fg4;
+@define-color brgray     @gb-gray;
+@define-color brpurple   @gb-purple-bright;
+@define-color brgreen    @gb-green-bright;
+@define-color brred      @gb-red-bright;
+@define-color braqua     @gb-aqua-bright;
+@define-color focused    @focus;
+@define-color red        @gb-red;
+ */

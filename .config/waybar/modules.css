@@ -1,0 +1,15 @@
+@import url("/home/mcruces/.config/colors/gruvbox-dark.css");
+
+/* Reservados: rojo = critical (parpadeo), amarillo = warning. Ningún módulo los usa de base. */
+@define-color mod-fg           @fg-on-accent;   /* texto oscuro sobre fondos brillantes */
+
+@define-color mod-workspace    @surface;
+@define-color mod-volume       @gb-blue-bright;
+@define-color mod-network      @gb-aqua-bright;
+@define-color mod-memory       @gb-green-bright;
+@define-color mod-cpu          @gb-purple-bright;
+@define-color mod-temp         @gb-orange-bright;
+@define-color mod-language     @gb-fg4;          /* battery comparte segmento */
+@define-color mod-notification @surface;         /* texto claro (@fg) */
+@define-color mod-date         @bg;              /* tray y fecha */
+@define-color mod-time         @fg;              /* texto oscuro (@bg) */

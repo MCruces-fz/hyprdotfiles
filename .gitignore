@@ -30,6 +30,9 @@
 .config/copyq/*
 !.config/copyq/copyq.conf
 
+# Colors
+!.config/colors/
+
 # Hyprland
 !.config/hypr
 
